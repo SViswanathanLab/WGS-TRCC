@@ -1,0 +1,7 @@
+#samples.yaml for mutect2.snakefile
+
+base_file_name: B_TRCC_18
+
+samples: /home/mi724/Tools/Snakemake/Mutect2/bam.list
+
+normals: [B_TRCC_18_Normal]
