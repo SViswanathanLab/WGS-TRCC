@@ -1,0 +1,32 @@
+## path to scripts ##
+tenX_funcs:  code/tenX_utils.R
+svaba_funcs:  code/svaba_utils.R
+plot_funcs:  code/plotting.R
+plotSVCN_script:  code/plotTitanSvaba.R
+
+## path to Combined SVABA and TITAN results ##
+combined_SV_CNA_results: results/combineSvabaGrocsvsTitan/
+
+## path to TITAN snakemake root  ##
+titan_libdir:  /path/to/TitanCNA/
+titan_results:  /path/to/TitanCNA/snakemake_results/
+
+## reference files ##
+genomeBuild:  hg38
+genomeStyle:  UCSC
+cytobandFile:  data/cytoBand_hg38.txt # only need if hg38
+
+## Plotting parameters ##
+## include list of genes to annotate on plot
+plot_geneFile:  data/AR_coord.txt 
+
+## if users want to zoom in on a specific region, here is an example ##
+plot_id: "AR_enhancer_zoom"
+plot_zoom:  TRUE
+plot_chr:  "X"
+plot_startPos:  66000000
+plot_endPos:  67000000
+plot_ylim:  c(-2,6)
+plot_size:  c(8,4)
+plot_type:  titan ## titan - will include haplotype fraction
+plot_format:  png
