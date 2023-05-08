@@ -1,0 +1,6 @@
+samples:
+  tumor1: /path/to/tumor/1/dir
+  normal1: /path/to/normal/1/dir
+
+pairings:
+  tumor1: normal1
