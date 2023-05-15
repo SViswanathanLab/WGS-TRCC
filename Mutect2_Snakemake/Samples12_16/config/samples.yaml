@@ -1,0 +1,7 @@
+#samples.yaml for mutect2.snakefile
+
+base_file_name: []
+
+samples: /home/mi724/Tools/Snakemake/Mutect2/bam.list
+
+normals: [DTRCC_12_Blood,RTRCC_16_PBMC]
