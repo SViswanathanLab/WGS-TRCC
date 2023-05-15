@@ -9,6 +9,8 @@ rule all:
 		expand("results/mutect2/{tumor}/unfiltered_{chromosomes}.vcf.gz.tbi",tumor=config["normals"],chromosomes=config["chromosomes"]),
 		expand("results/mutect2/{tumor}/unfiltered_{chromosomes}_f1r2.tar.gz",tumor=config["normals"],chromosomes=config["chromosomes"]),
 		expand("results/mutect2/{tumor}/unfiltered_{chromosomes}.vcf.gz.stats",tumor=config["normals"],chromosomes=config["chromosomes"]),
+		expand("results/mutect2/{tumor}/{tumor}_{chromosomes}_bamout.bai",tumor=config["normals"],chromosomes=config["chromosomes"]),
+		expand("results/mutect2/{tumor}/{tumor}_{chromosomes}_bamout.bam",tumor=config["normals"],chromosomes=config["chromosomes"]),
 		expand("results/MergeMutectStats/{tumor}/mutect_merged.stats",tumor=config["normals"]),
 		expand("results/GatherVcfs/{tumor}/gathered_unfiltered.vcf.gz",tumor=config["normals"]),
 		expand("results/LearnReadOrientationModel/{tumor}/read_orientation_model.tar.gz", tumor = config["normals"]),
@@ -22,7 +24,9 @@ if m2_extra_args == True:
 			vcf = temp("results/mutect2/{tumor}/unfiltered_{chromosomes}.vcf.gz"),
 			tbi = temp("results/mutect2/{tumor}/unfiltered_{chromosomes}.vcf.gz.tbi"),
 			tar = temp("results/mutect2/{tumor}/unfiltered_{chromosomes}_f1r2.tar.gz"),
-			stats = temp("results/mutect2/{tumor}/unfiltered_{chromosomes}.vcf.gz.stats")
+			stats = temp("results/mutect2/{tumor}/unfiltered_{chromosomes}.vcf.gz.stats"),
+			bam = "results/mutect2/{tumor}/{tumor}_{chromosomes}_bamout.bam",
+			bai = "results/mutect2/{tumor}/{tumor}_{chromosomes}_bamout.bai"
 		params:
 			reference_genome = config["reference_genome"],
 			germline_resource = config["germline_resource"],
@@ -56,6 +60,7 @@ if m2_extra_args == True:
 			--downsampling-stride 20 \
 			--max-reads-per-alignment-start 6 \
 			--max-suspicious-reads-per-alignment-start 6 \
+			--bam-output {output.bam} \
 			-output {output.vcf}) 2> {log}"
 else:
 	rule mutect2:
@@ -65,7 +70,9 @@ else:
 			vcf = temp("results/mutect2/{base_file_name}/unfiltered_{chromosomes}.vcf.gz"),
 			tbi = temp("results/mutect2/{base_file_name}/unfiltered_{chromosomes}.vcf.gz.tbi"),
 			tar = temp("results/mutect2/{base_file_name}/unfiltered_{chromosomes}_f1r2.tar.gz"),
-			stats = temp("results/mutect2/{base_file_name}/unfiltered_{chromosomes}.vcf.gz.stats")
+			stats = temp("results/mutect2/{base_file_name}/unfiltered_{chromosomes}.vcf.gz.stats"),
+			bam = "results/mutect2/{tumor}/{tumor}_{chromosomes}_bamout.bam",
+			bai = "results/mutect2/{tumor}/{tumor}_{chromosomes}_bamout.bai"
 		params:
 			reference_genome = config["reference_genome"],
 			germline_resource = config["germline_resource"],
@@ -83,6 +90,7 @@ else:
 			--germline-resource {params.germline_resource} \
 			--f1r2-tar-gz {output.tar} \
 			--panel-of-normals {params.panel_of_normals} \
+			--bam-output {output.bam} \
 			-output {output.vcf}) 2> {log}"
 
 rule MergeMutectStats:
