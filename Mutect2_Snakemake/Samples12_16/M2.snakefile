@@ -26,20 +26,48 @@ rule mutect2:
         germline_resource = config["germline_resource"],
         gatk = config["gatk_path"],
         panel_of_normals = config["panel_of_normals"],
-        normals = config["normals"]
+        normals = config["normals"],
+	m2_extra_args=config["m2_extra_args"]
     log:
         "logs/mutect2/{base_file_name}_{chromosomes}_mutect2.txt"
-    shell:
-        """({params.gatk} Mutect2 \
-        -reference {params.reference_genome} \
-        -input {input.tumor_filepath} \
-        -normal {params.normals} \
-        -intervals {wildcards.chromosomes} \
-        --germline-resource {params.germline_resource} \
-        --f1r2-tar-gz {output.tar} \
-        --panel-of-normals {params.panel_of_normals} \
-        -output {output.vcf}) 2> {log}"""
-
+    run:
+        
+	if params.m2_extra_args:
+		shell("({params.gatk} Mutect2 \
+        	-reference {params.reference_genome} \
+        	-input {input.tumor_filepath} \
+        	-normal {params.normals} \
+        	-intervals {wildcards.chromosomes} \
+        	--germline-resource {params.germline_resource} \
+        	--f1r2-tar-gz {output.tar} \
+        	--panel-of-normals {params.panel_of_normals} \
+		--read-filter PassesVendorQualityCheckReadFilter \
+		--read-filter HasReadGroupReadFilter \
+ 		--read-filter NotDuplicateReadFilter \
+		--read-filter MappingQualityAvailableReadFilter \
+		--read-filter MappingQualityReadFilter \
+		--minimum-mapping-quality 30 \
+		--read-filter OverclippedReadFilter \
+		--filter-too-short 25 \
+		--read-filter GoodCigarReadFilter \
+		--read-filter AmbiguousBaseReadFilter \
+		--native-pair-hmm-threads 2 \
+		--seconds-between-progress-updates 100 \
+		--downsampling-stride 20 \
+		--max-reads-per-alignment-start 6 \
+		--max-suspicious-reads-per-alignment-start 6 \
+        	-output {output.vcf}) 2> {log}")
+        else:
+		shell("({params.gatk} Mutect2 \
+        	-reference {params.reference_genome} \
+        	-input {input.tumor_filepath} \
+        	-normal {params.normals} \
+        	-intervals {wildcards.chromosomes} \
+        	--germline-resource {params.germline_resource} \
+        	--f1r2-tar-gz {output.tar} \
+        	--panel-of-normals {params.panel_of_normals} \
+        	-output {output.vcf}) 2> {log}")
+            
 
 rule MergeMutectStats:
 	output:
