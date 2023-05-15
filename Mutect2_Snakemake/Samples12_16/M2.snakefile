@@ -32,7 +32,7 @@ rule mutect2:
         "logs/mutect2/{base_file_name}_{chromosomes}_mutect2.txt"
     run:
         
-	if params.m2_extra_args:
+	if {params.m2_extra_args}:
 		shell("({params.gatk} Mutect2 \
         	-reference {params.reference_genome} \
         	-input {input.tumor_filepath} \
