@@ -191,7 +191,7 @@ rule LearnReadOrientationModel:
 
 rule IndexFeatureFile:
 	input:
-		vcf = expand("results/GatherVcfs/{base_file_name}/gathered_unfiltered.vcf.gz",base_file_name=config["base_file_name"])
+		vcf = "results/GatherVcfs/{base_file_name}/gathered_unfiltered.vcf.gz"
 	output:
 		"results/GatherVcfs/{base_file_name}/gathered_unfiltered.vcf.gz.tbi"
 	params:
