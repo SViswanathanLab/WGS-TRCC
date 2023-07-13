@@ -1,0 +1,2 @@
+Rscript getGeneFrequency_filterLength_groupTest_hg38.R tRCC_recurrent_CN_opt_sol_manual_100kb_geneMats.RData 0 path/to/metadata/100kb.bins.bed 0 chrPosn 1e7 overall fdr path/to/metadata/cgc_tier1_genes_added.txt tRCC_recurrent_CN_opt_sol_manual_geneFreq_100kb.txt
+
