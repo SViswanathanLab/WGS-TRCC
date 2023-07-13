@@ -3,7 +3,11 @@ These scripts have been modified from Zhou et al. 2022, available here [https://
 
 ## How to run
 
-### 1. For gene annotation
+### For gene annotation
 
-### 2. For histogram plot
 
+
+### For histogram plot
+
+1. Run runTitanMatrix.sh - This step is similar to runFreq.sh (This takes 100kb_geneMats.RData from step 1)
+2. Run runFreq.sh (This takes 100kb_geneMats.RData from step 1)
