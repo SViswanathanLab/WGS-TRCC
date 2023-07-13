@@ -1,0 +1,508 @@
+,sample,category,value
+669,01115156-TA1,TP53,splicing
+434,01115156-TC5,PMS1,nonsynonymous SNV
+297,01115157-TC3,HDAC4,nonsynonymous SNV
+518,01115157-TC3,ZBTB16,stopgain
+937,01115183-TA1,SETD2,nonsynonymous SNV
+1093,01115183-TA1,TP53,stopgain
+1,01115183-TA1,ZFHX3,promoter
+769,01115202-TC2,MED12,nonsynonymous SNV
+1127,01115202-TC2,ITSN2,frameshift deletion
+1232,01115202-TC2,CDK12,frameshift insertion
+1,01115244-TA3,MGA,promoter
+8,01115248-TA3,CDK12,stopgain
+154,01115248-TA3,NDST2,nonsynonymous SNV
+854,01115249-TC5,NF1,nonsynonymous SNV
+920,01115249-TC5,NOX3,nonsynonymous SNV
+1070,01115249-TC5,MGA,stopgain
+1,01115249-TC5,LSAMP,promoter
+20,01115257-TA4,CDK12,nonsynonymous SNV
+1139,01115257-TA4,NF1,nonsynonymous SNV
+1167,01115257-TA4,KMT2D,nonsynonymous SNV
+1440,01115257-TA4,KMT2C,frameshift insertion
+1565,01115257-TA4,CDK12,frameshift deletion
+1,01115257-TA4,TCF12,promoter
+2,01115257-TA4,RB1,promoter
+599,01115263-TA3,PTEN,nonsynonymous SNV
+12,01115284-TA9,CDK12,nonsynonymous SNV
+123,01115284-TA9,MET,nonsynonymous SNV
+1050,01115326-TA3,BRCA2,nonsynonymous SNV
+1337,01115326-TA3,BRCA2,stopgain
+1834,01115326-TA3,RB1,frameshift deletion
+1835,01115326-TA3,FOXA1,frameshift deletion
+1845,01115326-TA3,TP53,frameshift deletion
+391,01115374-TA2,PIK3R2,nonsynonymous SNV
+777,01115374-TA2,CDK12,stopgain
+808,01115374-TA2,AR,nonsynonymous SNV
+953,01115374-TA2,ZFP36L2,nonsynonymous SNV
+1195,01115374-TA2,SAMD9,nonsynonymous SNV
+1617,01115374-TA2,CDK12,frameshift deletion
+151,01115378-TA2,SMARCA1,nonsynonymous SNV
+920,01115378-TA2,RB1,stopgain
+966,01115378-TA2,TP53,frameshift deletion
+1,01115378-TA2,RAG1,promoter
+2,01115378-TA2,LSAMP,promoter
+588,01115414-TA1,SPOP,stopgain
+642,01115414-TA1,CDK12,frameshift deletion
+717,01115444-TA5,BRPF1,nonsynonymous SNV
+720,01115444-TA5,AKT1,nonsynonymous SNV
+1,01115444-TA5,ETV5,promoter
+444,01115468-TA3,COL5A3,nonsynonymous SNV
+665,01115468-TA3,GNAS,nonsynonymous SNV
+729,01115468-TA3,SPOP,nonsynonymous SNV
+1237,01115468-TA3,FOXA1,nonsynonymous SNV
+1258,01115468-TA3,ARID2,nonsynonymous SNV
+1712,01115468-TA3,AR,nonsynonymous SNV
+1996,01115468-TA3,FANCD2,nonsynonymous SNV
+3039,01115468-TA3,PTEN,frameshift deletion
+3086,01115468-TA3,ARID2,frameshift deletion
+1,01115468-TA3,LSAMP,promoter
+373,01115503-TC2,CDK12,stopgain
+736,01115503-TC2,ZFP36L2,nonsynonymous SNV
+887,01115503-TC2,CDK12,frameshift deletion
+1,01115503-TC2,CDKN1B,promoter
+231,01115531-TA4,KDM6A,nonsynonymous SNV
+1727,01115531-TA4,AR,nonsynonymous SNV
+2000,01115531-TA4,PYHIN1,frameshift deletion
+1681,01115531-TA4,RB1,splicing
+1,01115531-TA4,LSAMP,promoter
+318,01115549-TA4,AR,nonsynonymous SNV
+648,01115549-TA4,PTEN,splicing
+919,01115554-TA2,RASA1,nonsynonymous SNV
+1228,01115554-TA2,FANCD2,nonsynonymous SNV
+1918,01115554-TA2,CTNNB1,nonsynonymous SNV
+2510,01115554-TA2,SF3B1,nonsynonymous SNV
+3505,01115554-TA2,KMT2A,nonsynonymous SNV
+1,01115554-TA2,MRE11,promoter
+2,01115554-TA2,ZFHX3,promoter
+246,01115556-TC1,ETV1,nonsynonymous SNV
+418,01115556-TC1,PALB2,nonsynonymous SNV
+513,01115556-TC1,AXIN1,stopgain
+527,01115556-TC1,PTEN,nonsynonymous SNV
+238,01115556-TC1,PIK3R2,splicing
+1,01115556-TC1,CTNNB1,promoter
+199,01115569-TC1,CUL3,nonsynonymous SNV
+422,01115574-TC3,AXL,nonsynonymous SNV
+505,01115574-TC3,TP53,nonsynonymous SNV
+815,01115576-TC2,KMT2C,nonsynonymous SNV
+931,01115576-TC2,RB1,frameshift deletion
+755,01115577-TC1,KRAS,nonsynonymous SNV
+1155,01115577-TC1,BRCA1,frameshift deletion
+310,01115578-TC4,ATM,stopgain
+408,01115578-TC4,KDM6A,nonsynonymous SNV
+1,01115589-TC2,IDH1,promoter
+2,01115589-TC2,XPO1,promoter
+364,01115606-TA2,SAMD9,nonsynonymous SNV
+682,01115606-TA2,PALB2,nonsynonymous SNV
+110,01115644-TA1,ASXL2,nonsynonymous SNV
+136,01115644-TA1,SPOP,nonsynonymous SNV
+815,01115655-TA1,STAB2,nonsynonymous SNV
+419,01115655-TA1,TP53,splicing
+394,01115655-TC1,PIK3CA,nonsynonymous SNV
+491,01115655-TC1,COL15A1,nonsynonymous SNV
+494,01115655-TC1,STAB2,nonsynonymous SNV
+1057,01115655-TC1,NKX3-1,nonsynonymous SNV
+777,01115655-TC1,TP53,splicing
+81,01115668-TA4,PRKDC,stopgain
+551,01115668-TA4,CUL3,stopgain
+1,01115668-TA4,PPL,promoter
+2,01115668-TA4,IDH1,promoter
+272,01115669-TA3,BRAF,nonsynonymous SNV
+1,01115669-TA3,ZFHX3,promoter
+615,06115115-T,FOXA1,nonsynonymous SNV
+163,06115117-T,SETDB1,nonsynonymous SNV
+1,06115117-T,ETV5,promoter
+230,06115118-T,PIK3R2,nonsynonymous SNV
+397,6115233-T-C1,SLC4A2,nonsynonymous SNV
+469,DTB-003-BL,LSAMP,nonsynonymous SNV
+1021,DTB-003-BL,KMT2C,frameshift deletion
+1400,DTB-003-BL,PAX6,nonsynonymous SNV
+1655,DTB-003-BL,STAB2,stopgain
+1,DTB-003-BL,ETV5,promoter
+2,DTB-003-BL,SSR1,promoter
+321,DTB-005-BL,IL6ST,stopgain
+741,DTB-005-BL,CDKN1B,frameshift deletion
+1028,DTB-005-BL,TP53,nonsynonymous SNV
+1032,DTB-005-BL,CHD3,nonsynonymous SNV
+1351,DTB-005-BL,SMARCA1,frameshift insertion
+1352,DTB-005-BL,SMARCA1,nonsynonymous SNV
+1,DTB-005-BL,KMT2D,promoter
+378,DTB-008-BL,SAMD9,nonsynonymous SNV
+412,DTB-008-BL,KMT2C,stopgain
+614,DTB-008-BL,RAG1,stopgain
+902,DTB-008-BL,TP53,nonsynonymous SNV
+1,DTB-008-BL,MSH2,promoter
+554,DTB-009-BL,TAF1L,nonsynonymous SNV
+91,DTB-011-BL,SF3B1,nonsynonymous SNV
+256,DTB-011-BL,ZNF292,frameshift deletion
+687,DTB-011-BL,TP53,nonsynonymous SNV
+863,DTB-011-BL,CHD6,nonsynonymous SNV
+932,DTB-011-BL,AR,nonsynonymous SNV
+849,DTB-018-BL,APC,frameshift deletion
+1462,DTB-018-BL,PTPRD,nonsynonymous SNV
+2255,DTB-018-BL,FOXA1,frameshift deletion
+2554,DTB-018-BL,TP53,nonsynonymous SNV
+1,DTB-018-BL,MSH2,promoter
+2,DTB-018-BL,LSAMP,promoter
+3,DTB-018-BL,RAG1,promoter
+409,DTB-019-PRO,APC,frameshift insertion
+1164,DTB-019-PRO,TP53,nonsynonymous SNV
+1528,DTB-019-PRO,AR,nonsynonymous SNV
+1,DTB-019-PRO,PPL,promoter
+190,DTB-020-BL,PIK3R1,frameshift insertion
+205,DTB-020-BL,APC,frameshift deletion
+557,DTB-020-BL,ZFHX3,frameshift insertion
+510,DTB-020-BL,MGA,splicing
+360,DTB-021-BL,KMT2C,stopgain
+407,DTB-022-BL,BRAF,nonsynonymous SNV
+412,DTB-022-BL,KMT2C,nonsynonymous SNV
+413,DTB-022-BL,KMT2C,stopgain
+1,DTB-022-BL,MSH2,promoter
+2,DTB-022-BL,MIRLET7BHG,promoter
+606,DTB-023-BL,APC,frameshift deletion
+695,DTB-023-BL,NOX3,nonsynonymous SNV
+1097,DTB-023-BL,PTEN,nonsynonymous SNV
+1358,DTB-023-BL,RB1,stopgain
+1551,DTB-023-BL,ZFHX3,frameshift deletion
+1889,DTB-023-BL,CNOT3,nonsynonymous SNV
+698,DTB-024-PRO,APC,frameshift deletion
+1196,DTB-024-PRO,PTEN,frameshift insertion
+1468,DTB-024-PRO,BRCA2,frameshift insertion
+177,DTB-034-BL,MSH2,nonsynonymous SNV
+814,DTB-034-BL,CHD7,nonsynonymous SNV
+1203,DTB-034-BL,KMT2D,nonsynonymous SNV
+1472,DTB-034-BL,ZFHX3,frameshift deletion
+1550,DTB-034-BL,TP53,nonsynonymous SNV
+1931,DTB-034-BL,ERCC2,nonsynonymous SNV
+2104,DTB-034-BL,AR,nonsynonymous SNV
+1,DTB-034-BL,MIRLET7BHG,promoter
+1236,DTB-036-BL,KMT2D,frameshift deletion
+1445,DTB-036-BL,TSC2,nonsynonymous SNV
+1599,DTB-036-BL,TP53,nonsynonymous SNV
+1949,DTB-036-BL,CHD6,nonsynonymous SNV
+1314,DTB-036-BL,RB1,splicing
+1615,DTB-037-BL,ZFHX3,splicing
+1,DTB-037-BL,ETV5,promoter
+469,DTB-040-BL,KMT2C,nonsynonymous SNV
+599,DTB-040-BL,PTEN,frameshift deletion
+1010,DTB-040-BL,TP53,nonsynonymous SNV
+197,DTB-053-BL,MLH1,nonsynonymous SNV
+977,DTB-053-BL,FANCA,nonsynonymous SNV
+101,DTB-055-PRO,ZFP36L2,nonsynonymous SNV
+223,DTB-055-PRO,ATR,stopgain
+613,DTB-055-PRO,TAF1L,nonsynonymous SNV
+723,DTB-055-PRO,ATM,nonsynonymous SNV
+772,DTB-055-PRO,CDKN1B,frameshift deletion
+1041,DTB-055-PRO,TP53,nonsynonymous SNV
+1,DTB-055-PRO,MSH6,promoter
+48,DTB-059-BL,JAK1,frameshift insertion
+219,DTB-059-BL,SF3B1,nonsynonymous SNV
+1130,DTB-059-BL,KMT2D,nonsynonymous SNV
+1369,DTB-059-BL,PPL,stopgain
+1517,DTB-059-BL,TP53,nonsynonymous SNV
+1654,DTB-059-BL,SPOP,nonsynonymous SNV
+1,DTB-059-BL,EHHADH,promoter
+68,DTB-060-BL,PTPRC,nonsynonymous SNV
+1,DTB-060-BL,PIK3CA,promoter
+2,DTB-060-BL,BRCA2,promoter
+564,DTB-061-BL,ATR,nonsynonymous SNV
+1378,DTB-061-BL,TAF1L,nonsynonymous SNV
+1806,DTB-061-BL,BRCA2,nonsynonymous SNV
+2697,DTB-061-BL,ERG,nonsynonymous SNV
+2212,DTB-061-BL,TP53,splicing
+864,DTB-063-BL,PRKDC,nonsynonymous SNV
+1111,DTB-063-BL,HRAS,nonsynonymous SNV
+1392,DTB-063-BL,AKT1,nonsynonymous SNV
+1602,DTB-063-BL,TP53,nonsynonymous SNV
+1656,DTB-063-BL,CDK12,stopgain
+1895,DTB-063-BL,CHD6,splicing
+1992,DTB-064-BL,COL5A3,nonsynonymous SNV
+1,DTB-064-BL,RAG1,promoter
+1013,DTB-067-PRO,FOXA1,nonsynonymous SNV
+139,DTB-069-BL,ZFP36L2,nonsynonymous SNV
+349,DTB-069-BL,SMARCAD1,stopgain
+939,DTB-069-BL,RAG1,nonsynonymous SNV
+1413,DTB-069-BL,TP53,nonsynonymous SNV
+1829,DTB-069-BL,ZMYM3,frameshift insertion
+1,DTB-069-BL,MGA,promoter
+768,DTB-071-BL,KMT2C,nonsynonymous SNV
+1296,DTB-071-BL,RB1,stopgain
+1559,DTB-071-BL,TP53,nonsynonymous SNV
+1923,DTB-071-BL,GNAS,frameshift deletion
+1,DTB-071-BL,MGA,promoter
+544,DTB-074-BL,PRKDC,stopgain
+813,DTB-074-BL,FOXA1,nonsynonymous SNV
+1057,DTB-074-BL,SPOP,nonsynonymous SNV
+1,DTB-074-BL,LSAMP,promoter
+2,DTB-074-BL,MIRLET7BHG,promoter
+18,DTB-077-PRO,JAK1,nonsynonymous SNV
+492,DTB-077-PRO,PTEN,frameshift deletion
+666,DTB-077-PRO,TSC2,nonsynonymous SNV
+1,DTB-077-PRO,RB1,promoter
+2,DTB-077-PRO,MIRLET7BHG,promoter
+79,DTB-080-BL,MSH2,nonsynonymous SNV
+521,DTB-080-BL,TAF1L,nonsynonymous SNV
+587,DTB-080-BL,PTEN,nonsynonymous SNV
+208,DTB-080-BL,SEL1L3,splicing
+500,DTB-083-BL,SPEN,frameshift deletion
+792,DTB-083-BL,ARID1A,frameshift deletion
+2589,DTB-083-BL,PTPRC,stoploss
+3919,DTB-083-BL,MSH6,frameshift deletion
+5953,DTB-083-BL,BRPF1,nonsynonymous SNV
+5955,DTB-083-BL,BRPF1,stopgain
+8308,DTB-083-BL,ATR,nonsynonymous SNV
+8317,DTB-083-BL,ATR,frameshift deletion
+11143,DTB-083-BL,PIK3R1,nonsynonymous SNV
+11640,DTB-083-BL,CHD1,nonsynonymous SNV
+15552,DTB-083-BL,KMT2C,frameshift deletion
+16616,DTB-083-BL,PRKDC,frameshift deletion
+18517,DTB-083-BL,TAF1L,frameshift deletion
+19278,DTB-083-BL,COL15A1,nonsynonymous SNV
+20952,DTB-083-BL,RAG1,frameshift deletion
+22391,DTB-083-BL,KMT2A,nonsynonymous SNV
+24042,DTB-083-BL,KMT2D,frameshift deletion
+25119,DTB-083-BL,WASF3,frameshift insertion
+25301,DTB-083-BL,BRCA2,nonsynonymous SNV
+26281,DTB-083-BL,ARID4A,nonsynonymous SNV
+28312,DTB-083-BL,AXIN1,nonsynonymous SNV
+31397,DTB-083-BL,TP53,frameshift deletion
+31454,DTB-083-BL,CHD3,frameshift deletion
+32108,DTB-083-BL,NCOR1,nonsynonymous SNV
+33220,DTB-083-BL,CDK12,nonsynonymous SNV
+34857,DTB-083-BL,RNF43,nonsynonymous SNV
+36520,DTB-083-BL,CTDP1,nonsynonymous SNV
+38315,DTB-083-BL,ERF,frameshift deletion
+42179,DTB-083-BL,KDM6A,nonsynonymous SNV
+42567,DTB-083-BL,AR,nonsynonymous SNV
+1,DTB-083-BL,ARID1A,promoter
+2,DTB-083-BL,IDH1,promoter
+3,DTB-083-BL,LSAMP,promoter
+4,DTB-083-BL,ZNF292,promoter
+5,DTB-083-BL,NBN,promoter
+6,DTB-083-BL,MRE11,promoter
+7,DTB-083-BL,KMT2D,promoter
+8,DTB-083-BL,RB1,promoter
+9,DTB-083-BL,PPL,promoter
+10,DTB-083-BL,ZFHX3,promoter
+11,DTB-083-BL,MIRLET7BHG,promoter
+1228,DTB-085-BL,TP53,stopgain
+1,DTB-085-BL,MGA,promoter
+2,DTB-085-BL,MIRLET7BHG,promoter
+637,DTB-091-BL,HRAS,nonsynonymous SNV
+961,DTB-091-BL,TP53,nonsynonymous SNV
+912,DTB-092-BL,TP53,nonsynonymous SNV
+404,DTB-094-BL,NOX3,nonsynonymous SNV
+434,DTB-094-BL,MET,nonsynonymous SNV
+463,DTB-094-BL,KMT2C,frameshift deletion
+489,DTB-094-BL,PRKDC,nonsynonymous SNV
+940,DTB-094-BL,TP53,nonsynonymous SNV
+1,DTB-094-BL,LSAMP,promoter
+2,DTB-094-BL,MIRLET7BHG,promoter
+344,DTB-097-PRO,CTNNB1,nonsynonymous SNV
+814,DTB-097-PRO,PRKDC,nonsynonymous SNV
+1734,DTB-097-PRO,NF1,nonsynonymous SNV
+2173,DTB-097-PRO,KDM6A,frameshift deletion
+201,DTB-100-BL,XPO1,nonsynonymous SNV
+377,DTB-100-BL,SEL1L3,nonsynonymous SNV
+866,DTB-100-BL,PAX6,nonsynonymous SNV
+1279,DTB-100-BL,TP53,nonsynonymous SNV
+1,DTB-100-BL,PIK3CA,promoter
+1023,DTB-101-BL,ATM,frameshift deletion
+1125,DTB-101-BL,STAB2,nonsynonymous SNV
+1368,DTB-101-BL,ZFHX3,stopgain
+1,DTB-101-BL,LSAMP,promoter
+1381,DTB-102-PRO,TP53,frameshift deletion
+1420,DTB-102-PRO,NF1,frameshift deletion
+1783,DTB-102-PRO,AR,nonsynonymous SNV
+1,DTB-102-PRO,TCF12,promoter
+387,DTB-104-BL,RASA1,stoploss
+477,DTB-104-BL,ZNF292,frameshift insertion
+794,DTB-104-BL,PTEN,stopgain
+1224,DTB-104-BL,TP53,nonsynonymous SNV
+1356,DTB-104-BL,MBD1,nonsynonymous SNV
+1548,DTB-104-BL,AR,nonsynonymous SNV
+1211,DTB-111-PRO,TP53,nonsynonymous SNV
+610,DTB-111-PRO,KMT2C,splicing
+254,DTB-112-BL,IDH1,nonsynonymous SNV
+2007,DTB-112-BL,TP53,nonsynonymous SNV
+1,DTB-112-BL,CTNNB1,promoter
+2,DTB-112-BL,LSAMP,promoter
+45,DTB-119-PRO,SETDB1,nonsynonymous SNV
+337,DTB-119-PRO,PIK3R1,frameshift deletion
+1310,DTB-119-PRO,MED12,nonsynonymous SNV
+1022,DTB-119-PRO,TP53,splicing
+1,DTB-119-PRO,ZFHX3,promoter
+47,DTB-121-BL,ARID1A,nonsynonymous SNV
+1781,DTB-121-BL,WASF3,nonsynonymous SNV
+2292,DTB-121-BL,NCOR1,nonsynonymous SNV
+2719,DTB-121-BL,CNOT3,nonsynonymous SNV
+2953,DTB-121-BL,AR,nonsynonymous SNV
+1,DTB-121-BL,IDH1,promoter
+2,DTB-121-BL,NBN,promoter
+209,DTB-124-BL,CTNNB1,nonsynonymous SNV
+591,DTB-124-BL,CDKN2A,stopgain
+694,DTB-124-BL,USP28,frameshift deletion
+1059,DTB-124-BL,CTDP1,frameshift deletion
+518,DTB-124-BL,PRKDC,splicing
+2815,DTB-126-BL,IL6ST,nonsynonymous SNV
+3290,DTB-126-BL,JADE2,nonsynonymous SNV
+9183,DTB-126-BL,BRCA1,nonsynonymous SNV
+9765,DTB-126-BL,UNC13D,nonsynonymous SNV
+8793,DTB-126-BL,TP53,splicing
+1,DTB-126-BL,MRE11,promoter
+2,DTB-126-BL,ZFHX3,promoter
+3,DTB-126-BL,ETV4,promoter
+125,DTB-127-PRO,SF3B1,nonsynonymous SNV
+245,DTB-127-PRO,SEL1L3,stopgain
+952,DTB-127-PRO,TP53,nonsynonymous SNV
+1159,DTB-127-PRO,GNAS,nonsynonymous SNV
+10,DTB-128-BL,SPEN,stopgain
+287,DTB-128-BL,PDS5A,nonsynonymous SNV
+327,DTB-128-BL,IL6ST,nonsynonymous SNV
+400,DTB-128-BL,APC,frameshift deletion
+401,DTB-128-BL,APC,nonsynonymous SNV
+402,DTB-128-BL,APC,stopgain
+1080,DTB-128-BL,TP53,nonsynonymous SNV
+1012,DTB-128-BL,CDH1,splicing
+983,DTB-129-BL,TAF1L,nonsynonymous SNV
+1037,DTB-129-BL,COL5A1,nonsynonymous SNV
+1301,DTB-129-BL,BRCA2,stopgain
+1841,DTB-129-BL,AXL,nonsynonymous SNV
+1439,DTB-132-BL,MATN4,nonsynonymous SNV
+17,DTB-135-PRO,SPEN,frameshift deletion
+203,DTB-135-PRO,CTNNB1,nonsynonymous SNV
+456,DTB-135-PRO,ZNF292,frameshift deletion
+535,DTB-137-PRO,TP53,splicing
+1539,DTB-138-BL,AR,nonsynonymous SNV
+1,DTB-138-BL,MIRLET7BHG,promoter
+1077,DTB-140-BL,ZFHX3,nonsynonymous SNV
+1,DTB-141-BL,MSH2,promoter
+2,DTB-141-BL,RB1,promoter
+721,DTB-143-BL,CDKN1B,stopgain
+1049,DTB-143-BL,CDC27,nonsynonymous SNV
+207,DTB-146-BL,SETD2,frameshift deletion
+454,DTB-146-BL,KMT2C,nonsynonymous SNV
+467,DTB-146-BL,WRN,nonsynonymous SNV
+161,DTB-149-BL,ASXL2,stopgain
+195,DTB-149-BL,PMS1,frameshift deletion
+196,DTB-149-BL,PMS1,nonsynonymous SNV
+363,DTB-149-BL,ATR,nonsynonymous SNV
+797,DTB-149-BL,PTPRD,nonsynonymous SNV
+914,DTB-149-BL,PTEN,stopgain
+1541,DTB-149-BL,BRIP1,nonsynonymous SNV
+1,DTB-149-BL,LSAMP,promoter
+809,DTB-151-BL,TP53,nonsynonymous SNV
+1,DTB-151-BL,NCOR1,promoter
+1138,DTB-156-BL,RB1,stopgain
+289,DTB-159-BL,APC,frameshift insertion
+742,DTB-159-BL,AKT1,nonsynonymous SNV
+955,DTB-159-BL,PIK3R2,nonsynonymous SNV
+963,DTB-159-BL,ERF,nonsynonymous SNV
+1,DTB-159-BL,MIRLET7BHG,promoter
+1138,DTB-165-PRO,KMT2C,frameshift insertion
+1764,DTB-165-PRO,CDKN1B,frameshift deletion
+1902,DTB-165-PRO,BRCA2,nonsynonymous SNV
+2298,DTB-165-PRO,TP53,nonsynonymous SNV
+2430,DTB-165-PRO,BRCA1,nonsynonymous SNV
+2517,DTB-165-PRO,BRIP1,nonsynonymous SNV
+189,DTB-165-PRO,PTPRC,splicing
+1,DTB-165-PRO,LSAMP,promoter
+2,DTB-165-PRO,NBN,promoter
+725,DTB-167-PRO,PTEN,nonsynonymous SNV
+1,DTB-167-PRO,MSH6,promoter
+2,DTB-167-PRO,CTNNB1,promoter
+1152,DTB-170-BL,ZMYM3,frameshift deletion
+24,DTB-172-BL,ARID1A,nonsynonymous SNV
+1005,DTB-172-BL,TP53,nonsynonymous SNV
+1567,DTB-173-BL,BRCA2,stopgain
+2179,DTB-173-BL,COL5A3,nonsynonymous SNV
+1,DTB-173-BL,MSH2,promoter
+2,DTB-173-BL,MSH6,promoter
+110,DTB-175-BL,ASXL2,frameshift insertion
+488,DTB-175-BL,APC,nonsynonymous SNV
+1339,DTB-175-BL,TP53,nonsynonymous SNV
+1,DTB-175-BL,ZFHX3,promoter
+1205,DTB-176-BL,MYC,nonsynonymous SNV
+1415,DTB-176-BL,COL5A1,nonsynonymous SNV
+2572,DTB-176-BL,CNOT3,nonsynonymous SNV
+1,DTB-176-BL,MSH2,promoter
+1036,DTB-183-BL,CDK12,nonsynonymous SNV
+127,DTB-186-BL,SF3B1,nonsynonymous SNV
+914,DTB-186-BL,MYBBP1A,frameshift insertion
+926,DTB-186-BL,TP53,nonsynonymous SNV
+927,DTB-186-BL,CHD3,nonsynonymous SNV
+952,DTB-186-BL,NCOR1,stopgain
+1,DTB-186-BL,LSAMP,promoter
+2,DTB-186-BL,PIK3CA,promoter
+222,DTB-187-BL,PIK3CB,nonsynonymous SNV
+1139,DTB-187-BL,AR,nonsynonymous SNV
+107,DTB-188-BL,ASXL2,frameshift deletion
+691,DTB-188-BL,STAB2,nonsynonymous SNV
+756,DTB-188-BL,TCF12,nonsynonymous SNV
+1,DTB-188-BL,NBN,promoter
+348,DTB-190-BL,KMT2C,nonsynonymous SNV
+488,DTB-190-BL,PTEN,nonsynonymous SNV
+593,DTB-190-BL,BRCA2,frameshift deletion
+1,DTB-193-BL,NCOR1,promoter
+133,DTB-201-PRO,CTNNB1,nonsynonymous SNV
+179,DTB-201-PRO,PDS5A,frameshift insertion
+590,DTB-201-PRO,FOXA1,nonsynonymous SNV
+717,DTB-201-PRO,CHD3,nonsynonymous SNV
+129,DTB-202-BL,ASXL2,frameshift deletion
+257,DTB-204-BL,APC,frameshift insertion
+567,DTB-204-BL,USP28,stopgain
+902,DTB-204-BL,SPOP,nonsynonymous SNV
+1,DTB-204-BL,HRAS,promoter
+171,DTB-205-BL,ARID1A,nonsynonymous SNV
+2132,DTB-205-BL,TP53,splicing
+1,DTB-205-BL,CTNNB1,promoter
+2,DTB-205-BL,RB1,promoter
+955,DTB-210-BL,APC,stopgain
+1276,DTB-210-BL,KMT2C,frameshift deletion
+1971,DTB-210-BL,USP28,frameshift deletion
+3010,DTB-210-BL,SPOP,nonsynonymous SNV
+908,DTB-213-BL,AKT1,nonsynonymous SNV
+1482,DTB-213-BL,AR,nonsynonymous SNV
+1,DTB-213-BL,ARID1A,promoter
+960,DTB-214-BL,CHD3,frameshift deletion
+998,DTB-214-BL,CDK12,nonsynonymous SNV
+1035,DTB-214-BL,SPOP,nonsynonymous SNV
+638,DTB-216-PRO,RB1,stopgain
+748,DTB-216-PRO,ZFHX3,frameshift insertion
+1,DTB-216-PRO,MSH2,promoter
+1662,DTB-220-BL,FOXA1,nonsynonymous SNV
+2270,DTB-220-BL,ERF,nonsynonymous SNV
+737,DTB-222-BL,ATM,stopgain
+841,DTB-222-BL,NCOR2,nonsynonymous SNV
+858,DTB-222-BL,BRCA2,nonsynonymous SNV
+1,DTB-222-BL,LSAMP,promoter
+766,DTB-223-BL,TP53,startloss
+950,DTB-223-BL,TMPRSS2,frameshift insertion
+1,DTB-223-BL,MIRLET7BHG,promoter
+373,DTB-232-PRO,PTPRD,nonsynonymous SNV
+533,DTB-234-BL,PTPRD,nonsynonymous SNV
+1006,DTB-234-BL,TP53,nonsynonymous SNV
+1270,DTB-234-BL,AR,nonsynonymous SNV
+1,DTB-234-BL,LSAMP,promoter
+2,DTB-234-BL,TMPRSS2,promoter
+558,DTB-251-BL,TP53,stopgain
+28,DTB-252-BL,JAK1,splicing
+950,DTB-255-BL,TP53,frameshift deletion
+952,DTB-255-BL,TP53,nonsynonymous SNV
+1206,DTB-255-BL,CHD6,nonsynonymous SNV
+1234,DTB-255-BL,ERG,nonsynonymous SNV
+1,DTB-255-BL,NBN,promoter
+2,DTB-255-BL,PPL,promoter
+838,DTB-258-BL,TP53,frameshift deletion
+941,DTB-260-BL,KDM6A,nonsynonymous SNV
+542,DTB-260-BL,NCOR2,splicing
+285,DTB-261-BL,TAP1,nonsynonymous SNV
+746,DTB-261-BL,TP53,frameshift deletion
+574,DTB-265-PRO,KMT2C,frameshift deletion
+1314,DTB-265-PRO,TP53,frameshift deletion
+1427,DTB-265-PRO,SPOP,nonsynonymous SNV
+1,DTB-265-PRO,SSR1,promoter
+781,DTB-266-BL,MGA,frameshift deletion
+920,DTB-266-BL,TP53,nonsynonymous SNV
+1198,DTB-266-BL,ZMYM3,frameshift deletion
+1,DTB-266-BL,KMT2D,promoter
