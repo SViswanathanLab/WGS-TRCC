@@ -1,0 +1,64 @@
+## path to tools ##
+svaba_exe:  /path/to/svaba
+samTools:  /path/to/samtools
+
+## path to scripts ##
+tenX_funcs:  code/tenX_utils.R
+svaba_funcs:  code/svaba_utils.R
+plot_funcs:  code/plotting.R
+bxRescue_script:  code/barCodeOverlap.R
+combineSVCN_script:  code/combineSVABA-GROCSVS-TITAN.R
+getLRsomaticSV_script:  code/getLongRangerSomaticSV.R
+buildPoN_script:  code/buildGermlineSVPoN.R
+annotPoNSV_script:  code/annotPoNSVs.R
+filterSVs_script: code/filterToolSVs.R
+plotSVCN_script:  code/plotTitanSvaba.R
+plotCircos_script:  code/create_circosPlot.R
+
+## path to TITAN snakemake root  ##
+titan_libdir:  /path/to/TitanCNA/
+titan_results:  /path/to/TitanCNA/snakemake_results/
+
+## path to GROCSVS results ##
+grocsvs_results: /path/to/GROCSVS/
+
+## reference files ##
+refGenome:   /path/to/ref/genome.hg38.fasta
+genomeBuild:  hg38
+genomeStyle:  UCSC
+cytobandFile:  data/cytoBand_hg38.txt # only need if hg38
+chrs:  c(1:22, \"X\")
+
+## LongRanger params ##
+bamFileName:  phased_possorted_bam.bam
+#phaseVariantFileName:  phased_variants.vcf.gz
+
+## Panel of Normal settings ##
+PoN_blackListBinWidth: 100
+PoN_minFreqSVbkpts: 2 
+# PoN_minFreqCNV: 26 # CNV boundaries seen in ~half samples 
+PoN_minFreqBlackList: 100 # do not use, so set to high number
+
+## SVABA settings ##
+svaba_dbSNPindelVCF:  /path/to/known/indels.vcf
+svaba_numThreads:  4
+manualSVFile: CRPC10X_manual_SV_calling.txt
+
+## Barcode Rescue settings ##
+bxRescue_minMapQ:  20
+bxRescue_minLength:  10000
+bxRescue_windowSize:  1000
+bxRescue_minReadOverlapSupport:  2
+
+## Plotting parameters ##
+plot_zoom:  FALSE
+plot_chrs:  c(1:22, \"X\") # "None" will also plot all chromosomes
+plot_startPos:  None
+plot_endPos:  None
+plot_geneFile:  data/gene_list_72.txt ## include list of genes to annotate on plot
+plot_ylim:  c(-2,6)
+plot_size:  c(8,4)
+plot_type:  titan ## titan - will include haplotype fraction
+plot_format:  png
+
+

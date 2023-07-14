@@ -1,0 +1,68 @@
+## path to tools ##
+samTools:  /path/to/samtools
+bxTools:  /path/to/bxtools
+
+## paths to scripts ##
+molCov_script:  code/getMoleculeCoverage.R
+molCovBXMol_script:  code/getMoleculeCoverage_bxMol.R
+phaseCounts_hetSites_script:  code/getPhasedHETSitesFromLLRVCF.R
+phaseCounts_counts_script:  code/getTumourAlleleCountsAtHETSites.py
+TitanCNA_rscript: code/titanCNA_v1.21.0_TenX.R
+TitanCNA_selectSolutionRscript: code/selectSolution.R
+TitanCNA_combineTitanIchorCNA:  code/combineTITAN-ichor_v2.R
+TitanCNA_libdir:  /path/to/TitanCNA/ ## optional
+ichorCNA_libdir:  /path/to/ichorCNA/ ## optional
+
+## reference settings ##
+genomeBuild: hg38
+genomeStyle:  UCSC
+snpVCF:  /path/to/hapmap_3.3.hg38.vcf.gz
+centromere:  data/GRCh38.GCA_000001405.2_centromere_acen.txt
+cytobandFile:  data/cytoBand_hg38.txt # only need if hg38
+sex:  male  # use None if both females and males are in sample set
+
+## LongRanger params ##
+bamFileName:  phased_possorted_bam.bam
+phaseVariantFileName:  phased_variants.vcf.gz
+
+## params for each step ##
+## bxTools ##
+bx_mapQual:  60
+bx_bedFileRoot:  data/10kb_hg38
+
+## molecule coverage ##
+molCov_minReadsPerBX:  2
+molCov_minLengthMI:  5e3
+molCov_maxLengthMI:  5e6
+molCov_chrs:  c(1:22, \"X\")
+molCov_gcWig: data/gc_hg38_10kb.wig
+molCov_mapWig:  data/map_hg38_10kb.wig
+molCov_maxCN:  8
+
+## get HET sites from LongRanger phased variant VCF ##
+het_minVCFQuality:  100
+het_minDepth:  10
+het_minVAF:  0.25
+
+## bam filters for tumor allelic counts ##
+het_minBaseQuality:  10
+het_minMapQuality:  20
+
+## TitanCNA params ##
+TitanCNA_maxNumClonalClusters: 3
+TitanCNA_chrs:  c(1:22, \"X\")
+TitanCNA_normalInit:  0.5
+TitanCNA_maxPloidy:  4
+TitanCNA_maxCN:  8
+TitanCNA_haplotypeBinSize: 1e5
+TitanCNA_estimateNormal:  map
+TitanCNA_estimatePloidy:  TRUE
+TitanCNA_estimateClonality: TRUE
+TitanCNA_alphaK:  10000
+TitanCNA_alphaR:  5000
+TitanCNA_diploidStrength: 0
+TitanCNA_txnExpLen: 1e20
+TitanCNA_plotYlim:  c(-2,4)
+TitanCNA_solutionThreshold: 0.05
+TitanCNA_numCores:  1
+
