@@ -20,7 +20,7 @@ These scripts have been modified from Zhou et al. 2022 [https://insight.jci.org/
   Rscript /path/to/makeMatrixFromTITAN-ICHOR_segBased_hg38.R path/to/titan_cluster_solution path/to/metadata/100kb.bins.bed path/to/all_samples/     
   common chrPosn 10000 path/to/output_run
 
-2. Run runFreq.sh - This takes 100kb_geneMats.RData from step 1
+2. Run runFreq.sh - This takes 100kb_geneMats.RData from step 1 and can be run as follows
 
   Rscript getGeneFrequency_filterLength_groupTest_hg38_tRCC.R /path/to/file.RData 0 /path/to/metadata/100kb.bins.bed 0 chrPosn 1e7 overall fdr 
   /path/to/metadata/cgc_tier1.txt output_geneFreq.txt
