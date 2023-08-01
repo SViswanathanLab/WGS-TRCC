@@ -1,0 +1,12 @@
+#samples.yaml for mutect2.snakefile
+
+base_file_name: 
+  DTRCC3_Rkidney: /mnt/storage/labs/sviswanathan/tRCC_data/FFPE/WGS/DTRCC3_Rkidney/v3/DTRCC3_Rkidney.bam
+  DTRCC_3_Blood: /mnt/storage/labs/sviswanathan/tRCC_data/FFPE/normal/WGS/DTRCC_3_Blood/v1/DTRCC_3_Blood.bam
+  DTRCC9_Rkidney: /mnt/storage/labs/sviswanathan/tRCC_data/FFPE/WGS/DTRCC9_Rkidney/v1/DTRCC9_Rkidney.bam
+  DTRCC_9_Blood: /mnt/storage/labs/sviswanathan/tRCC_data/FFPE/normal/WGS/DTRCC_9_Blood/v1/DTRCC_9_Blood.bam
+
+normals:
+  DTRCC3_Rkidney: DTRCC_3_Blood
+  DTRCC9_Rkidney: DTRCC_9_Blood
+  

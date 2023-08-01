@@ -1,0 +1,19 @@
+##Config file containing information for the mutect2.snakefile
+
+## Tools Path
+gatk_path: /mnt/storage/apps/gatk-4.3.0.0/gatk
+java: /usr/bin/java
+tabix: /usr/bin/tabix
+picard_jar: /home/ma1111/tools/picard.jar
+
+## Path to reference files
+reference_genome: /mnt/storage/labs/sviswanathan/GATK_ref/cz_ref/longranger/refdata-GRCh38-2.1.0/fasta/genome.fa
+germline_resource: /mnt/storage/labs/sviswanathan/GATK_ref/cz_ref/hg38_pon/af-only-gnomad.hg38.vcf.gz
+panel_of_normals: /mnt/storage/labs/sviswanathan/GATK_ref/cz_ref/hg38_pon/M2PoN_4.0_WGS_for_public.vcf
+#small_exac_common: /mnt/storage/labs/sviswanathan/GATK_ref/small_exac_common_3.hg38.vcf.gz
+
+#Interval chromosomes
+chromosomes: ['chr1','chr2','chr3','chr4','chr5','chr6','chr7','chr8','chr9','chr10','chr11','chr12','chr13','chr14','chr15','chr16','chr17','chr18','chr19','chr20','chr21','chr22','chrX']
+
+# M2 Extra Args logic
+m2_extra_args: True

@@ -1,0 +1,9 @@
+#samples.yaml for mutect2.snakefile
+
+base_file_name: 
+  DTRCC5_LPAnode: /mnt/storage/labs/sviswanathan/tRCC_data/DTRCC_5/DTRCC5_LPAnode.linkedReads.bam
+  DTRCC_5_Blood: /mnt/storage/labs/sviswanathan/tRCC_data/DTRCC_5/DTRCC5_Blood.linkedReads.bam
+
+normals:
+  DTRCC5_LPAnode: DTRCC_5_Blood
+  

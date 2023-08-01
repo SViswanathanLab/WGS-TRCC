@@ -1,0 +1,6 @@
+__default__:
+    q:  broad
+    h_vmem: 20G
+    h_rt:   200:0:0
+    pe: smp 4
+    binding:    linear:1

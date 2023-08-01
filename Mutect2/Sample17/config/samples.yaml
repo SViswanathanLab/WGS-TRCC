@@ -1,0 +1,8 @@
+#samples.yaml for mutect2.snakefile
+
+base_file_name: 
+  RTRCC_17_Kidney: /mnt/storage/labs/sviswanathan/tRCC_data/RTRCC_17/v1/RTRCC_17_Kidney.bam
+  RTRCC_17_Blood_Normal: /mnt/storage/labs/sviswanathan/tRCC_data/RTRCC_17/v1/RTRCC_17_Blood_Normal.bam
+
+normals:
+  RTRCC_17_Kidney: RTRCC_17_Blood_Normal

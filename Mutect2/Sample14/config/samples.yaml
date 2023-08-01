@@ -1,0 +1,7 @@
+#samples.yaml for mutect2.snakefile
+
+base_file_name: 
+  DTRCC_14: /home/mi724/Tools/Mutect2_Snakemake/Sample14/Sample14bam.list
+
+normals:
+  DTRCC_14: DTRCC_14_AdjNormal

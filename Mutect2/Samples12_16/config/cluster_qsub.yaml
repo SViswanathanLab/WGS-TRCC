@@ -1,0 +1,27 @@
+__default__:
+    q:  broad
+    h_vmem: 20G
+    h_rt:   200:0:0
+    pe: smp 4
+    binding:    linear:1
+
+GatherPileupSummaries:
+    q:  broad
+    h_vmem: 30G
+    h_rt:   300:0:0
+    pe: smp 8
+    binding:    linear:1
+
+MergeBamOuts:
+    q:  broad
+    h_vmem: 30G
+    h_rt:   300:0:0
+    pe: smp 8
+    binding:    linear:1
+
+GetPileupSummaries:
+    q:  broad
+    h_vmem: 30G
+    h_rt:   300:0:0
+    pe: smp 8
+    binding:    linear:1

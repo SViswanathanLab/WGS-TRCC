@@ -1,0 +1,15 @@
+#samples.yaml for mutect2.snakefile
+
+base_file_name: 
+  DTRCC6_LKidneyResection: /mnt/storage/labs/sviswanathan/tRCC_data/DTRCC_6/DTRCC6_LKidneyResection.linkedReads.bam
+  DTRCC6_AdjNormal: /mnt/storage/labs/sviswanathan/tRCC_data/DTRCC_6/DTRCC6_AdjNormal.linkedReads.bam
+  DTRCC8_Lkidney: /mnt/storage/labs/sviswanathan/tRCC_data/DTRCC_8/DTRCC8_Lkidney.linkedReads.bam
+  DTRCC_8_Blood: /mnt/storage/labs/sviswanathan/tRCC_data/DTRCC_8/DTRCC8_Blood.linkedReads.bam
+  DTRCC10_Rkidney: /mnt/storage/labs/sviswanathan/tRCC_data/DTRCC_10/DTRCC10_Rkidney.linkedReads.bam
+  DTRCC_10_Blood: /mnt/storage/labs/sviswanathan/tRCC_data/bamlinks/linked_reads/DTRCC10_Blood/DTRCC10_Blood.linkedReads.bam
+
+normals:
+  DTRCC6_LKidneyResection: DTRCC6_AdjNormal
+  DTRCC8_Lkidney: DTRCC_8_Blood
+  DTRCC10_Rkidney: DTRCC_10_Blood
+  
