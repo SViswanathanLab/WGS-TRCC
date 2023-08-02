@@ -25,6 +25,6 @@ These scripts have been modified from Zhou et al. 2022 [https://insight.jci.org/
   Rscript getGeneFrequency_filterLength_groupTest_hg38_tRCC.R /path/to/file.RData 0 /path/to/metadata/100kb.bins.bed 0 chrPosn 1e7 overall fdr 
   /path/to/metadata/cgc_tier1.txt output_geneFreq.txt
 
-3. Run CN_Boxplot.R - This takes the data generated above and creates plots of CN information across the genome. It also requires the files Census_allSat May 13 21_30_39 2023.csv and centromere_locations. 
+3. Run CN_boxplots.R - This takes the data generated above and creates plots of CN information across the genome. It also requires the files Census_allSat May 13 21_30_39 2023.csv and centromere_locations. 
 
 
