@@ -6,7 +6,7 @@ library(ggplot2)
 library(tidyverse)
 
 # load the data file
-freq_data <- read.table("/Volumes/sviswanathan/users/machom/tRCC/wgs_analysis/gene_alteration_annotation/results/tRCC_recurrent_CN_hist_final_ploidy_no_sample16_geneFreq.txt", header=TRUE, sep="\t")
+freq_data <- read.table("tRCC_recurrent_CN_hist_final_ploidy_no_sample16_geneFreq.txt", header=TRUE, sep="\t")
 
 # multiply the column of CN loss by -1 to make all the values negative so they go below the x axis
 freq_data$loss_neg <- lapply(freq_data$All_loss, "*", -1)
