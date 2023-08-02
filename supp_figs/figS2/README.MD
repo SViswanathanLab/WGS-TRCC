@@ -1,4 +1,5 @@
 Figure S2B:
+
 tRCC_recurrrent_CN_opt_sol_manual_geneFreq_100kb.txt (copy number loss and gain across chromosomes, format includes columns for chromosome, location start, location end, CN loss, and CN gain)
 
 centromere_locations (contains information on the starting and ending positions of the centromeres of each chromosome, downloaded as BED file from the UCSC Genome Browser)
