@@ -2,7 +2,7 @@
 
 The scripts on each subfolder were used for somatic variant calls of tRCC samples for FFPE-WGS, Frozen-LR and Frozen-WGS.
 
-## Reference files used throughout the whole analyses are-
+## Reference files used throughout the analyses are-
 
 Homo_sapiens_assembly38.fasta
 
