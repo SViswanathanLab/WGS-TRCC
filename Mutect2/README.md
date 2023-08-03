@@ -1,6 +1,6 @@
 # Somatic mutation calls with Mutect2 from GATK
 
-The scripts on each subfolder were used for somatic variant calls of tRCC samples for FFPE-WGS, Frozen-LR and Frozen-WGS.
+The scripts on each subfolder were used for somatic variant calls of tRCC samples for FFPE-WGS, Frozen-LR and Frozen-WGS. Sample14, Sample17 and Samples12_16 (joint calling mode) folders represent example Mutect2 calls with Snakemake pipeline for frozen-WGS. Config files are found in each of the sample folders. 
 
 ## Reference files used throughout the analyses are-
 
