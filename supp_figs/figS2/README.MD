@@ -1,6 +1,7 @@
-# Copy number alterations in tRCC WGS cohort to generate figS2B
 
-These scripts have been modified from Zhou et al. 2022 [https://insight.jci.org/articles/view/161370], available here [https://github.com/GavinHaLab/crpc-sv-pattern-study]
+## For copy number alterations and gene frequency in the tRCC WGS cohort to generate figS2B
+
+The scripts have been modified from Zhou et al. 2022 [https://insight.jci.org/articles/view/161370], available here [https://github.com/GavinHaLab/crpc-sv-pattern-study]
 
 ## How to run
 
@@ -31,3 +32,5 @@ centromere_locations (contains information on the starting and ending positions 
 Census_allSat May 13 21_30_39 2023.csv (list of genes that have some evidence of being associated with cancer and corresponding information regarding location, confidence of association, gene effect, etc. More information can be found on cancer.sanger.ac.uk/census)
 
 CN_boxplots.R plots the copy number loss and gain across chromosomes and identifies cancer-related genes that are enriched or deleted in specific areas.
+
+### COMUT plot to generate figS2A is in the code comut.py
