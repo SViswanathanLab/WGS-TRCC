@@ -33,4 +33,4 @@ Census_allSat May 13 21_30_39 2023.csv (list of genes that have some evidence of
 
 CN_boxplots.R plots the copy number loss and gain across chromosomes and identifies cancer-related genes that are enriched or deleted in specific areas.
 
-### COMUT plot to generate figS2A is in the code comut.py
+Note: COMUT plot to generate figS2A is in the code comut.py
