@@ -1,0 +1,15 @@
+#ViswanathanLab 2022
+#example samples
+samples:
+  
+  B_TRCC_18_Tumor: /path/to/B_TRCC_18_Tumor.bam
+  B_TRCC_18_Normal: /path/to/B_TRCC_18_Normal.bam
+  DTRCC12_2018:  /path/to/DTRCC_12_2018.bam
+  DTRCC12_2019:  /path/to/DTRCC_12_2019.bam
+  DTRCC_12_Blood:  /path/to/DTRCC_12_Blood.bam
+
+pairings:
+
+  B_TRCC_18_Tumor: B_TRCC_18_Normal
+  DTRCC_12_2018: DTRCC_12_Blood
+  DTRCC12_2019: DTRCC_12_Blood
