@@ -28,9 +28,13 @@ Homo_sapiens_assembly38.index_bundle
 
 cytoBand_acen.hg38.interval_list
 
-### How to run
+### How to run by invoking snakemake
+
+```
+path/to/bin/snakemake -s path/to/Snakemake/Mutect2/mutect2.snakefile --cluster-config path/to/Mutect2/config/cluster_qsub.yaml --cluster "qsub -l h_vmem={cluster.h_vmem},h_rt={cluster.h_rt} -pe {cluster.pe} -binding {cluster.binding}" --jobs 30 --rerun-incomplete
+```
+
 
 ```
 path/to/bin/snakemake -s path/to/Snakemake/Mutect2/gather_mutect_calls.snakefile --cluster-config path/to/Mutect2/config/cluster_qsub.yaml --cluster "qsub -l h_vmem={cluster.h_vmem},h_rt={cluster.h_rt} -pe {cluster.pe} -binding {cluster.binding}" --jobs 30 --rerun-incomplete
-
 ```
