@@ -2,7 +2,7 @@
 
 ## Whole genome sequence analyses of translocation renal cell carcinoma (tRCC)
 
-This repository contains codes used in the manuscript "_A genetic basis for cancer sex differences revealed in Xp11 translocation renal cell carcinoma_"  to analyze 29 tRCC samples (in-house datasets) from 15 patients and 145 published tRCC whole-exome sequences.
+This repository contains codes used in the manuscript "_A genetic basis for cancer sex differences revealed in Xp11 translocation renal cell carcinoma_" https://www.biorxiv.org/content/10.1101/2023.08.04.552029v1 to analyze 29 tRCC samples (in-house datasets) from 15 patients and 145 published tRCC whole-exome sequences.
 
 The published data used in this study are from- 
 
