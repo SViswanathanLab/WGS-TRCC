@@ -1,0 +1,726 @@
+#!/bin/bash
+
+mkdir -p /czlab/cbao/TRCC
+TRCC=/czlab/cbao/TRCC
+
+# metadata
+mkdir -p  ${TRCC}/metadata
+
+
+# CNV analysis
+mkdir -p /czlab/cbao/TRCC/CNV
+TRCC_CNV=/czlab/cbao/TRCC/CNV
+mkdir -p ${TRCC_CNV}/tmp
+
+## references
+### make interval list for 1_22 and X
+mkdir -p ${TRCC_CNV}/References
+cat /czlab/References/GRCh38/hg38.10kb.interval_list | \
+ grep '^@' > /czlab/References/GRCh38/hg38.10kb.head.interval_list
+cat /czlab/References/GRCh38/hg38.10kb.interval_list | \
+ grep -v '^chr[^_]*_' > ${TRCC_CNV}/References/hg38.10kb.1_22XYM.interval_list
+cat ${TRCC_CNV}/References/hg38.10kb.1_22XYM.interval_list | \
+ grep -vE '^chr[X|Y|M]' > ${TRCC_CNV}/References/hg38.10kb.1_22.interval_list
+cat ${TRCC_CNV}/References/hg38.10kb.1_22XYM.interval_list | \
+ grep '^chrX' | \
+ cat /czlab/References/GRCh38/hg38.10kb.head.interval_list \
+  - > ${TRCC_CNV}/References/hg38.10kb.X.interval_list
+### AnnotateIntervals
+mkdir -p ${TRCC_CNV}/AnnotateIntervals
+annotate_intervals_A=${TRCC_CNV}/AnnotateIntervals/hg38.10kb.annotated.1_22.interval_list
+annotate_intervals_X=${TRCC_CNV}/AnnotateIntervals/hg38.10kb.annotated.X.interval_list
+annotate_intervals_log=${TRCC_CNV}/AnnotateIntervals/hg38.10kb.AnnotateIntervals.log
+nohup srun --cpus-per-task=4 --mem-per-cpu=16G \
+ gatk --java-options '-Xmx16g' AnnotateIntervals \
+  -L ${TRCC_CNV}/References/hg38.10kb.1_22.interval_list \
+  --reference /czlab/References/GRCh38/Homo_sapiens_assembly38.fasta \
+  --feature-query-lookahead 1000000 \
+  --interval-merging-rule OVERLAPPING_ONLY \
+  --output ${annotate_intervals_A} &> ${annotate_intervals_log} &
+nohup srun --cpus-per-task=4 --mem-per-cpu=16G \
+ gatk --java-options '-Xmx16g' AnnotateIntervals \
+  -L ${TRCC_CNV}/References/hg38.10kb.X.interval_list \
+  --reference /czlab/References/GRCh38/Homo_sapiens_assembly38.fasta \
+  --feature-query-lookahead 1000000 \
+  --interval-merging-rule OVERLAPPING_ONLY \
+  --output ${annotate_intervals_X} &>> ${annotate_intervals_log} &
+
+## PoN
+### CollectReadCounts
+mkdir -p ${TRCC_CNV}/CollectReadCounts
+find /czlab/DFCI_Data/TranslocationKidneyCancer/DNA-WGS/ -type f -name *10kb_counts.txt | \
+ while read read_counts;do
+    s=`basename ${read_counts} | sed 's#\.10kb_counts\.txt$##g'`
+    cat ${read_counts} | grep -E '^[@|CONTIG]' > ${TRCC_CNV}/CollectReadCounts/${s}.RC_head.10kb.tsv && \
+    cat ${read_counts} | grep -w '^chr[0-9]*' | \
+     cat ${TRCC_CNV}/CollectReadCounts/${s}.RC_head.10kb.tsv \
+      - > ${TRCC_CNV}/CollectReadCounts/${s}.RC.1_22.10kb.tsv && \
+    cat ${read_counts} | grep -w '^chrX' | \
+     cat ${TRCC_CNV}/CollectReadCounts/${s}.RC_head.10kb.tsv \
+      - > ${TRCC_CNV}/CollectReadCounts/${s}.RC.X.10kb.tsv &
+done
+### determine sex
+echo -e 'pair_id\tsex' > ${TRCC}/metadata/TRCC.samples_sex.tsv
+cat ${TRCC}/metadata/TRCC.samples.tsv | \
+  awk -F "\t" '!a[$3]++' | \
+ while read pair;do
+    c=(${pair});pair_id=${c[0]};case_id=${c[1]};control_id=${c[2]}
+    cat ${TRCC_CNV}/CollectReadCounts/${control_id}.RC.X.10kb.tsv | \
+     grep -v '^@' | grep -v CONTIG | \
+     cat ${TRCC_CNV}/CollectReadCounts/${control_id}.RC.1_22.10kb.tsv - | \
+     grep -v '^@' | \
+     datatable.R - -e "d <- d[!is.na(COUNT)];\
+      RC_A <- median(d[CONTIG != 'chrX', COUNT]);\
+      RC_X <- median(d[CONTIG == 'chrX', COUNT]);\
+      RC_AX <- 2 / round(RC_A / RC_X);\
+      d=data.table(RC_AX)" | tail -1 | \
+     sed "s#^#${pair_id}\t#g" >> ${TRCC}/metadata/TRCC.samples_sex.tsv
+done
+### CreateReadCountPanelOfNormals for autosomes
+mkdir -p ${TRCC_CNV}/CreateReadCountPanelOfNormals
+normal_RC_A=${TRCC_CNV}/CreateReadCountPanelOfNormals/TRCC.CNV_PoN.10kb.hg38.1_22.fof.list
+cat ${TRCC}/metadata/TRCC.samples_sex.tsv | \
+ awk -F "\t" 'FNR>1{print $1}' | \
+ fgrep -wf - ${TRCC}/metadata/TRCC.samples.tsv | cut -f 3 | \
+ sed "s#^#${TRCC_CNV}/CollectReadCounts/#g" | \
+ sed 's#$#.RC.1_22.10kb.tsv#g' | \
+ uniq > ${normal_RC_A}
+normal_input_A=`cat ${normal_RC_A} | sed 's# # -I #g;s#^#-I #g'`
+cnv_pon_A=${TRCC_CNV}/CreateReadCountPanelOfNormals/TRCC.CNV_PoN.10kb.hg38.1_22.hdf5
+cnv_pon_A_sv=${TRCC_CNV}/CreateReadCountPanelOfNormals/TRCC.CNV_PoN.10kb.hg38.1_22.singular_values.tsv
+cnv_pon_A_log=${TRCC_CNV}/CreateReadCountPanelOfNormals/TRCC.CNV_PoN.10kb.hg38.1_22.stderr.log
+nohup srun --cpus-per-task=16 --mem-per-cpu=16G \
+ gatk --java-options '-Xmx16g' CreateReadCountPanelOfNormals \
+  --tmp-dir ${TRCC_CNV}/tmp \
+  ${normal_input_A} \
+  --minimum-interval-median-percentile 10.0 \
+  --maximum-zeros-in-sample-percentage 5.0 \
+  --maximum-zeros-in-interval-percentage 5.0 \
+  --extreme-sample-median-percentile 2.5 \
+  --do-impute-zeros true \
+  --extreme-outlier-truncation-percentile 0.1 \
+  --number-of-eigensamples 20 \
+  --maximum-chunk-size 16777216 \
+  --annotated-intervals ${annotate_intervals_A} \
+  --output ${cnv_pon_A} &> ${cnv_pon_A_log} && \
+python -c "exec(\"import h5py\\nf=h5py.File('${cnv_pon_A}', 'r')\\nprint(f['panel/singular_values'][:])\")" | \
+ sed 's#\[##;s#\]##;s#^ \+##g;s# \+$##g;s#'\''##g;s# \+#\n#g' > ${cnv_pon_A_sv} &
+### CreateReadCountPanelOfNormals for female's chrX
+normal_RC_X=${TRCC_CNV}/CreateReadCountPanelOfNormals/TRCC.CNV_PoN.10kb.hg38.X.fof.list
+cat ${TRCC}/metadata/TRCC.samples_sex.tsv | \
+ awk -F "\t" 'FNR>1&&$2==2{print $1}' | \
+ fgrep -wf - ${TRCC}/metadata/TRCC.samples.tsv | cut -f 3 | \
+ sed "s#^#${TRCC_CNV}/CollectReadCounts/#g" | \
+ sed 's#$#.RC.X.10kb.tsv#g' | \
+ uniq > ${normal_RC_X}
+normal_input_X=`cat ${normal_RC_X} | sed 's# # -I #g;s#^#-I #g'`
+cnv_pon_X=${TRCC_CNV}/CreateReadCountPanelOfNormals/TRCC.CNV_PoN.10kb.hg38.X.hdf5
+cnv_pon_X_sv=${TRCC_CNV}/CreateReadCountPanelOfNormals/TRCC.CNV_PoN.10kb.hg38.X.singular_values.tsv
+cnv_pon_X_log=${TRCC_CNV}/CreateReadCountPanelOfNormals/TRCC.CNV_PoN.10kb.hg38.X.stderr.log
+nohup srun --cpus-per-task=16 --mem-per-cpu=16G \
+ gatk --java-options '-Xmx16g' CreateReadCountPanelOfNormals \
+  --tmp-dir ${TRCC_CNV}/tmp \
+  ${normal_input_X} \
+  --minimum-interval-median-percentile 10.0 \
+  --maximum-zeros-in-sample-percentage 5.0 \
+  --maximum-zeros-in-interval-percentage 5.0 \
+  --extreme-sample-median-percentile 2.5 \
+  --do-impute-zeros true \
+  --extreme-outlier-truncation-percentile 0.1 \
+  --number-of-eigensamples 20 \
+  --maximum-chunk-size 16777216 \
+  --annotated-intervals ${annotate_intervals_X} \
+  --output ${cnv_pon_X} &> ${cnv_pon_X_log} && \
+python -c "exec(\"import h5py\\nf=h5py.File('${cnv_pon_X}', 'r')\\nprint(f['panel/singular_values'][:])\")" | \
+ sed 's#\[##;s#\]##;s#^ \+##g;s# \+$##g;s#'\''##g;s# \+#\n#g' > ${cnv_pon_X_sv} &
+### CreateReadCountPanelOfNormals for male's chrX 
+normal_RC_X1=${TRCC_CNV}/CreateReadCountPanelOfNormals/TRCC.CNV_PoN.10kb.hg38.X1.fof.list
+cat ${TRCC}/metadata/TRCC.samples_sex.tsv | \
+ awk -F "\t" 'FNR>1&&$2==1{print $1}' | \
+ fgrep -wf - ${TRCC}/metadata/TRCC.samples.tsv | cut -f 3 | \
+ sed "s#^#${TRCC_CNV}/CollectReadCounts/#g" | \
+ sed 's#$#.RC.X.10kb.tsv#g' | \
+ uniq > ${normal_RC_X1}
+normal_input_X1=`cat ${normal_RC_X1} | sed 's# # -I #g;s#^#-I #g'`
+cnv_pon_X1=${TRCC_CNV}/CreateReadCountPanelOfNormals/TRCC.CNV_PoN.10kb.hg38.X1.hdf5
+cnv_pon_X1_sv=${TRCC_CNV}/CreateReadCountPanelOfNormals/TRCC.CNV_PoN.10kb.hg38.X1.singular_values.tsv
+cnv_pon_X1_log=${TRCC_CNV}/CreateReadCountPanelOfNormals/TRCC.CNV_PoN.10kb.hg38.X1.stderr.log
+nohup srun --cpus-per-task=16 --mem-per-cpu=16G \
+ gatk --java-options '-Xmx16g' CreateReadCountPanelOfNormals \
+  --tmp-dir ${TRCC_CNV}/tmp \
+  ${normal_input_X1} \
+  --minimum-interval-median-percentile 10.0 \
+  --maximum-zeros-in-sample-percentage 5.0 \
+  --maximum-zeros-in-interval-percentage 5.0 \
+  --extreme-sample-median-percentile 2.5 \
+  --do-impute-zeros true \
+  --extreme-outlier-truncation-percentile 0.1 \
+  --number-of-eigensamples 20 \
+  --maximum-chunk-size 16777216 \
+  --annotated-intervals ${annotate_intervals_X} \
+  --output ${cnv_pon_X1} &> ${cnv_pon_X1_log} && \
+python -c "exec(\"import h5py\\nf=h5py.File('${cnv_pon_X1}', 'r')\\nprint(f['panel/singular_values'][:])\")" | \
+ sed 's#\[##;s#\]##;s#^ \+##g;s# \+$##g;s#'\''##g;s# \+#\n#g' > ${cnv_pon_X1_sv} &
+
+## Normalization
+### DenoiseReadCounts
+mkdir -p ${TRCC_CNV}/DenoiseReadCounts
+samples_sex=${TRCC}/metadata/TRCC.samples_sex.tsv
+cat ${TRCC}/metadata/TRCC.samples.tsv | \
+ while read pair;do
+    c=(${pair});pair_id=${c[0]};case_id=${c[1]};control_id=${c[2]}
+    read_counts=${TRCC_CNV}/CollectReadCounts/${case_id}.RC
+    denoisedCR=${TRCC_CNV}/DenoiseReadCounts/${case_id}.denoisedCR
+    denoisedCR_log=${TRCC_CNV}/DenoiseReadCounts/${case_id}.denoisedCR.stderr.log
+    nohup srun --cpus-per-task=16 --mem-per-cpu=16G \
+     gatk --java-options '-Xmx16g' DenoiseReadCounts \
+      --input ${read_counts}.1_22.10kb.tsv \
+      --count-panel-of-normals ${cnv_pon_A} \
+      --number-of-eigensamples 5 \
+      --standardized-copy-ratios ${denoisedCR}.standardizedCR.1_22.10kb.tsv \
+      --denoised-copy-ratios ${denoisedCR}.1_22.10kb.tsv &> ${denoisedCR_log} && \
+    X=`cat ${samples_sex} | awk -F "\t" -v p="${pair_id}" '$1==p{print $2}'` && \
+    [[ ${X} = "2" ]] && cnv_pon_X0=${cnv_pon_X} || cnv_pon_X0=${cnv_pon_X1} && \
+    nohup srun --cpus-per-task=16 --mem-per-cpu=16G \
+     gatk --java-options '-Xmx16g' DenoiseReadCounts \
+      --input ${read_counts}.X.10kb.tsv \
+      --count-panel-of-normals ${cnv_pon_X0} \
+      --number-of-eigensamples 3 \
+      --standardized-copy-ratios ${denoisedCR}.standardizedCR.X.10kb.tsv \
+      --denoised-copy-ratios ${denoisedCR}.X.10kb.tsv &>> ${denoisedCR_log} &
+done
+
+## AF
+### phased_genotype
+mkdir -p ${TRCC_CNV}/phased_genotype
+GermlineVar=/czlab/DFCI_Data/TranslocationKidneyCancer/DNA-WGS/GermlineVar
+cat ${TRCC}/metadata/TRCC.samples.tsv | \
+ while read pair;do
+    c=(${pair});pair_id=${c[0]};case_id=${c[1]};control_id=${c[2]}
+    echo -e "CHROM\tPOS\tREF\tALT\tREF_AD\tALT_AD" > ${TRCC_CNV}/phased_genotype/${case_id}.AD.tsv
+    echo -e "CHROM\tPOS\tREF\tALT\tGT" > ${TRCC_CNV}/phased_genotype/${case_id}.phasedGT.tsv
+    for i in {{1..22},X};do
+        cat ${GermlineVar}/${pair_id}_germlineVar/chr${i}.HetInfo.txt | \
+         cut -f 1-4 | paste - \
+          ${GermlineVar}/${pair_id}_germlineVar/${case_id}.AD.chr${i}.txt | \
+         awk -F "\t" -v OFS="\t" '($5>2)&&($6>2){print}' >> ${TRCC_CNV}/phased_genotype/${case_id}.AD.tsv
+        cat ${GermlineVar}/${pair_id}_germlineVar/chr${i}.HetInfo.txt | \
+         cut -f 1-4 | paste - \
+          ${GermlineVar}/${pair_id}_germlineVar/${case_id}.phasedGT.chr${i}.txt >> ${TRCC_CNV}/phased_genotype/${case_id}.phasedGT.tsv
+    done
+done
+### allelic_fraction
+mkdir -p ${TRCC_CNV}/allelic_fraction
+cat ${TRCC}/metadata/TRCC.samples.tsv | \
+ while read pair;do
+    c=(${pair});pair_id=${c[0]};case_id=${c[1]};control_id=${c[2]}
+    ACN_AF.R -g ${TRCC_CNV}/phased_genotype/${case_id}.phasedGT.tsv \
+     ${TRCC_CNV}/phased_genotype/${case_id}.AD.tsv > ${TRCC_CNV}/allelic_fraction/${case_id}.phasedAF.tsv &
+done
+
+### distribution of AD and AF
+density_theme="theme(plot.margin = unit(c(1, 1, 1, 1), 'cm'), plot.background = element_blank(), \
+     axis.line = element_blank(), \
+     axis.ticks = element_line(colour = 'black', linewidth  = 0.5), \
+     axis.text = element_text(color = 'black'), axis.title = element_blank(), \
+     panel.grid.major = element_blank(), panel.grid.minor = element_blank(), \
+     panel.background = element_blank())"
+
+mkdir -p ${TRCC_CNV}/density_plot
+cat ${TRCC}/metadata/TRCC.samples.tsv | \
+ while read pair;do
+    c=(${pair});pair_id=${c[0]};case_id=${c[1]};control_id=${c[2]}
+    plot_log=${TRCC_CNV}/density_plot/${case_id}.plot.log
+    > ${plot_log}
+    # AD distribution
+    cat ${TRCC_CNV}/phased_genotype/${case_id}.AD.tsv | \
+     datatable.R - -e "melt(data=d, id.vars=c('CHROM', 'POS'), \
+      measure=c('REF_AD', 'ALT_AD'), \
+      variable.name = 'AD_type', value.name = 'AD')" | \
+     ggplot2.R - -o ${TRCC_CNV}/density_plot/${case_id}.AD.density.pdf \
+      -s 5,7 -b blank --col_name TRUE \
+      -m "ggplot() + \
+       geom_density(aes(x = AD, fill = AD_type), \
+       data = d, alpha = 0.5, show.legend = FALSE) + \
+       scale_x_continuous(limits = c(0, 100), breaks = seq(0, 100, 20), \
+        expand = expansion(mult = c(0, 0))) + \
+       ${density_theme}" &> ${plot_log}
+    # AF distribution
+    cat ${TRCC_CNV}/allelic_fraction/${case_id}.phasedAF.tsv | \
+     datatable.R - -e "melt(data=d, id.vars=c('CONTIG', 'POSITION'), \
+      measure=c('PH1_AF', 'PH2_AF'), \
+      variable.name = 'AF_type', value.name = 'AF')" | \
+     ggplot2.R - -o ${TRCC_CNV}/density_plot/${case_id}.AF.density.pdf \
+      -s 5,7 -b blank --col_name TRUE \
+      -m "ggplot() + \
+       geom_density(aes(x = AF, fill = AF_type), \
+       data = d, alpha = 0.5, show.legend = FALSE) + \
+       scale_x_continuous(limits = c(0, 1), breaks = seq(0, 1, 0.2), \
+        expand = expansion(mult = c(0, 0))) + \
+       ${density_theme}" &> ${plot_log}
+done
+
+## CN
+### allelic_CN
+mkdir -p ${TRCC_CNV}/allelic_CN
+samples_sex=${TRCC}/metadata/TRCC.samples_sex.tsv
+cat ${TRCC}/metadata/TRCC.samples.tsv | \
+ while read pair;do
+    c=(${pair});pair_id=${c[0]};case_id=${c[1]};control_id=${c[2]}
+    phasedAF=${TRCC_CNV}/allelic_fraction/${case_id}.phasedAF && \
+    denoisedCR=${TRCC_CNV}/DenoiseReadCounts/${case_id}.denoisedCR && \
+    allelicCN=${TRCC_CNV}/allelic_CN/${case_id}.allelicCN && \
+    X=`cat ${samples_sex} | awk -F "\t" -v p="${pair_id}" '$1==p{print $2}'` && \
+    [[ ${X} = "2" ]] && phasedAF_X=${phasedAF}.tsv || phasedAF_X='x' && \
+    ACN_CN.R -e ${phasedAF}.tsv -x ${X} ${denoisedCR}.1_22.10kb.tsv | \
+     awk -F "\t" -v OFS="\t" 'FNR==1{print}\
+      FNR>1{print $0|"sort -k1,1n -k2,2n"}'> ${allelicCN}.10kb.tsv && \
+    ACN_CN.R -e ${phasedAF_X} -x ${X} ${denoisedCR}.X.10kb.tsv | \
+     awk -F "\t" -v OFS="\t" 'FNR==1{}\
+      FNR>1{print $0|"sort -k1,1n -k2,2n"}' >> ${allelicCN}.10kb.tsv &
+done
+### plot_CN
+mkdir -p ${TRCC_CNV}/plot_CN
+cat ${TRCC}/metadata/TRCC.samples.tsv | \
+ while read pair;do
+    c=(${pair});pair_id=${c[0]};case_id=${c[1]};control_id=${c[2]}
+    mkdir -p ${TRCC_CNV}/plot_CN/${case_id}
+    allelicCN=${TRCC_CNV}/allelic_CN/${case_id}.allelicCN && \
+    plotCN=${TRCC_CNV}/plot_CN/${case_id}/${case_id}.plotCN && \
+    plotCN_log=${TRCC_CNV}/plot_CN/${case_id}/${case_id}.plotCN.log && \
+    > ${plotCN_log}
+    X=`cat ${samples_sex} | awk -F "\t" -v p="${pair_id}" '$1==p{print $2}'`
+    for i in {{1..22},X};do
+        ((p=p%15)); ((p++==0)) && wait
+        a=",5"
+        [[ (${i} == X) && (${X} == 1) ]] && a=""
+        cat ${allelicCN}.10kb.tsv | \
+         awk -F "\t" -v OFS="\t" -v i="${i}" 'FNR==1{print}\
+          $1==i{sub("^chr","",$1);print}' | \
+         cut -f 1-4${a} > ${plotCN}.chr${i}.10kb.tsv && \
+        plotCN.R -s ${case_id} -g "${i}" \
+         --dot_shape "circle filled" --ylab "" \
+         --dot_size 1 -m "NA" \
+         -d /czlab/cbao/ref/hg38/Homo_sapiens_assembly38.chr0.dict  \
+         -b /czlab/cbao/ref/hg38/gBands.hg38.head.txt \
+         -o ${plotCN}.chr${i}.10kb \
+         ${plotCN}.chr${i}.10kb.tsv &>> ${plotCN_log} && \
+        [[ (${i} == X) && (${X} == 1) ]] && continue || \
+        CN_contour.R -u 1 -l 2 \
+         -o ${plotCN}.chr${i}.10kb.CN_contour \
+         ${plotCN}.chr${i}.10kb.tsv &>> ${plotCN_log} && \
+        rm -f ${plotCN}.chr${i}.10kb.tsv &
+    done
+done
+
+
+# CNV analysis in 30kb bin
+TRCC_CNV=/czlab/cbao/TRCC/CNV
+bin_len=30kb
+
+## references
+### PreprocessIntervals
+mkdir -p ${TRCC_CNV}/PreprocessIntervals_${bin_len}
+nohup srun --cpus-per-task=16 --mem-per-cpu=16G \
+ gatk  --java-options '-Xmx16g' PreprocessIntervals \
+  --reference /czlab/References/GRCh38/Homo_sapiens_assembly38.fasta \
+  --bin-length 30000 \
+  --padding 0 \
+  -O ${TRCC_CNV}/PreprocessIntervals_${bin_len}/hg38.${bin_len}.interval_list &> ${TRCC_CNV}/PreprocessIntervals_30kb/hg38.${bin_len}.log
+cat ${TRCC_CNV}/PreprocessIntervals_${bin_len}/hg38.${bin_len}.interval_list | \
+ grep -v ^@ | grep -v ^CONTIG | \
+ awk -F "\t" -v OFS="\t" '{$2=$2-1;\
+  print $0|"sort -k1,1 -k2,2n"}' > ${TRCC_CNV}/PreprocessIntervals_${bin_len}/hg38.${bin_len}.bed
+### DenoiseReadCounts
+mkdir -p ${TRCC_CNV}/DenoiseReadCounts_${bin_len}
+cat ${TRCC}/metadata/TRCC.samples.tsv | \
+ while read pair;do
+    ((p=p%4)); ((p++==0)) && wait
+    c=(${pair});pair_id=${c[0]};case_id=${c[1]};control_id=${c[2]}
+    denoisedCR_10kb=${TRCC_CNV}/DenoiseReadCounts/${case_id}.denoisedCR
+    denoisedCR=${TRCC_CNV}/DenoiseReadCounts_${bin_len}/${case_id}.denoisedCR
+    cat ${denoisedCR_10kb}.1_22.10kb.tsv | \
+     grep -v ^@ | grep -v ^CONTIG | \
+     awk -F "\t" -v OFS="\t" '{$2=$2-1;print $0|"sort -k1,1 -k2,2n"}' | \
+     bedtools intersect -a stdin \
+      -b ${TRCC_CNV}/PreprocessIntervals_${bin_len}/hg38.${bin_len}.bed -wo | \
+     cut -f 1-7,10 | sort -k1,1 -k2,2n | \
+     awk -F "\t" -v OFS="\t" 'BEGIN{print "CONTIG.i\tSTART.i\tEND.i\tLOG2_COPY_RATIO\tCONTIG\tSTART\tEND\tov"}!a[$1$2$3]++{$6=$6+1;print}' | \
+     datatable.R - -e "d[, .(LOG2_COPY_RATIO=log2(median(2^LOG2_COPY_RATIO))), \
+      by=.(CONTIG, START, END)]" > ${denoisedCR}.1_22.${bin_len}.tsv &
+    cat ${denoisedCR_10kb}.X.10kb.tsv | \
+     grep -v ^@ | grep -v ^CONTIG | \
+     awk -F "\t" -v OFS="\t" '{$2=$2-1;print $0|"sort -k1,1 -k2,2n"}' | \
+     bedtools intersect -a stdin \
+      -b ${TRCC_CNV}/PreprocessIntervals_${bin_len}/hg38.${bin_len}.bed -wo | \
+     cut -f 1-7,10 | sort -k1,1 -k2,2n | \
+     awk -F "\t" -v OFS="\t" 'BEGIN{print "CONTIG.i\tSTART.i\tEND.i\tLOG2_COPY_RATIO\tCONTIG\tSTART\tEND\tov"}!a[$1$2$3]++{$6=$6+1;print}' | \
+     datatable.R - -e "d[, .(LOG2_COPY_RATIO=log2(median(2^LOG2_COPY_RATIO))), \
+      by=.(CONTIG, START, END)]" > ${denoisedCR}.X.${bin_len}.tsv &
+done
+
+## CN
+### allelic_CN
+mkdir -p ${TRCC_CNV}/allelic_CN_${bin_len}
+samples_sex=${TRCC}/metadata/TRCC.samples_sex.tsv
+cat ${TRCC}/metadata/TRCC.samples.tsv | \
+ while read pair;do
+    c=(${pair});pair_id=${c[0]};case_id=${c[1]};control_id=${c[2]}
+    phasedAF=${TRCC_CNV}/allelic_fraction/${case_id}.phasedAF && \
+    denoisedCR=${TRCC_CNV}/DenoiseReadCounts_${bin_len}/${case_id}.denoisedCR
+    allelicCN=${TRCC_CNV}/allelic_CN_${bin_len}/${case_id}.allelicCN && \
+    X=`cat ${samples_sex} | awk -F "\t" -v p="${pair_id}" '$1==p{print $2}'` && \
+    [[ ${X} = "2" ]] && phasedAF_X=${phasedAF}.tsv || phasedAF_X='x' && \
+    ACN_CN.R -e ${phasedAF}.tsv -x ${X} ${denoisedCR}.1_22.${bin_len}.tsv | \
+     awk -F "\t" -v OFS="\t" 'FNR==1{print}\
+      FNR>1{print $0|"sort -k1,1n -k2,2n"}' > ${allelicCN}.${bin_len}.tsv && \
+    ACN_CN.R -e ${phasedAF_X} -x ${X} ${denoisedCR}.X.${bin_len}.tsv | \
+     awk -F "\t" -v OFS="\t" 'FNR==1{}\
+      FNR>1{print $0|"sort -k1,1n -k2,2n"}' >> ${allelicCN}.${bin_len}.tsv &
+done
+### plot_CN
+mkdir -p ${TRCC_CNV}/plot_CN_${bin_len}
+cat ${TRCC}/metadata/TRCC.samples.tsv | \
+ while read pair;do
+    c=(${pair});pair_id=${c[0]};case_id=${c[1]};control_id=${c[2]}
+    mkdir -p ${TRCC_CNV}/plot_CN_${bin_len}/${case_id}
+    allelicCN=${TRCC_CNV}/allelic_CN_${bin_len}/${case_id}.allelicCN && \
+    plotCN=${TRCC_CNV}/plot_CN_${bin_len}/${case_id}/${case_id}.plotCN && \
+    plotCN_log=${TRCC_CNV}/plot_CN_${bin_len}/${case_id}/${case_id}.plotCN.log && \
+    > ${plotCN_log}
+    X=`cat ${samples_sex} | awk -F "\t" -v p="${pair_id}" '$1==p{print $2}'`
+    for i in {{1..22},X};do
+        ((p=p%15)); ((p++==0)) && wait
+        a=",5"
+        [[ (${i} == X) && (${X} == 1) ]] && a=""
+        cat ${allelicCN}.${bin_len}.tsv | \
+         awk -F "\t" -v OFS="\t" -v i="${i}" 'FNR==1{print}\
+          $1==i{sub("^chr","",$1);print}' | \
+         cut -f 1-4${a} > ${plotCN}.chr${i}.${bin_len}.tsv && \
+        plotCN.R -s ${case_id} -g "${i}" \
+         --dot_shape "circle filled" --ylab "" \
+         --dot_size 1 -m "NA" \
+         -d /czlab/cbao/ref/hg38/Homo_sapiens_assembly38.chr0.dict  \
+         -b /czlab/cbao/ref/hg38/gBands.hg38.head.txt \
+         -o ${plotCN}.chr${i}.${bin_len} \
+         ${plotCN}.chr${i}.${bin_len}.tsv &>> ${plotCN_log} && \
+        [[ (${i} == X) && (${X} == 1) ]] && continue || \
+        CN_contour.R -u 1 -l 2 \
+         -o ${plotCN}.chr${i}.${bin_len}.CN_contour \
+         ${plotCN}.chr${i}.${bin_len}.tsv &>> ${plotCN_log} && \
+        rm -f ${plotCN}.chr${i}.${bin_len}.tsv &
+    done
+done
+
+## CN
+bin_len=100kb
+### allelic_CN
+mkdir -p ${TRCC_CNV}/allelic_CN_${bin_len}
+samples_sex=${TRCC}/metadata/TRCC.samples_sex.tsv
+cat ${TRCC}/metadata/TRCC.samples.tsv | \
+ while read pair;do
+    c=(${pair});pair_id=${c[0]};case_id=${c[1]};control_id=${c[2]}
+    echo ${case_id}
+    phasedAF=${TRCC_CNV}/allelic_fraction/${case_id}.phasedAF && \
+    denoisedCR=${TRCC_CNV}/DenoiseReadCounts_${bin_len}/${case_id}.denoisedCR
+    allelicCN=${TRCC_CNV}/allelic_CN_${bin_len}/${case_id}.allelicCN && \
+    dna_wgs=/czlab/DFCI_Data/TranslocationKidneyCancer/DNA-WGS && \
+    cat ${TRCC_CNV}/CIRCOS/${case_id}.alleleA.txt | \
+     awk -F "\t" -v OFS="\t" 'BEGIN{print "CONTIG\tSTART\tEND\tPH1_CN"} \
+      {sub("hs", "chr", $1);print}' > ${allelicCN}.${bin_len}.PH1.tsv && \
+    cat ${TRCC_CNV}/CIRCOS/${case_id}.alleleB.txt | \
+     awk -F "\t" -v OFS="\t" 'BEGIN{print "CONTIG\tSTART\tEND\tPH2_CN"} \
+      {sub("hs", "chr", $1);print}' > ${allelicCN}.${bin_len}.PH2.tsv && \
+    merge_2file.R -a ${allelicCN}.${bin_len}.PH1.tsv \
+      -b ${allelicCN}.${bin_len}.PH2.tsv \
+      -x CONTIG,START,END -y CONTIG,START,END \
+      -J > ${allelicCN}.${bin_len}.CR.tsv && \
+    cat ${allelicCN}.${bin_len}.CR.tsv | \
+     datatable.R - -e "d <- d[!(is.na(PH1_CN)|is.na(PH2_CN))];\
+      autosome_d <- d[CONTIG %in% paste0('chr', 1:22)];\
+      ph_cn <- as.matrix(autosome_d[, PH1_CN], autosome_d[, PH2_CN]);\
+      ph_cn_median <- median(ph_cn);\
+      d[, PH1_CN := PH1_CN/ph_cn_median];\
+      d[, PH2_CN := PH2_CN/ph_cn_median]" > ${allelicCN}.${bin_len}.tsv && \
+    cat ${TRCC_CNV}/CIRCOS/${case_id}.links.txt | \
+     sed 's#hs#chr#g' | cut -f 1,2,4,5 | \
+     sed 's#^#chr1\tpos1\tchr2\tpos2\n#g' | \
+     merge_2file.R -a /czlab/DFCI_Data/TranslocationKidneyCancer/DNA-WGS/${pair_id,,}.SV.txt \
+      -b - -x 4,5,7,8 -y 1,2,3,4 -J | \
+     cut -f 1-4,8-9| 
+     awk -F "\t" -v OFS="\t" 'FNR==1{printf $0"\tsupporting_reads\n"} \
+      FNR>1{printf $0"\t1\n"}' | \
+     ACN_SV.R --sv_span 0 - > ${allelicCN}.${bin_len}.SV.tsv && \
+    rm -f ${allelicCN}.${bin_len}.PH1.tsv && \
+    rm -f ${allelicCN}.${bin_len}.PH2.tsv && \
+    rm -f ${allelicCN}.${bin_len}.CR.tsv
+done
+### plot_CN
+mkdir -p ${TRCC_CNV}/plot_CN_${bin_len}
+cat ${TRCC}/metadata/TRCC.samples.tsv | \
+ while read pair;do
+    c=(${pair});pair_id=${c[0]};case_id=${c[1]};control_id=${c[2]}
+    mkdir -p ${TRCC_CNV}/plot_CN_${bin_len}/${case_id}
+    allelicCN=${TRCC_CNV}/allelic_CN_${bin_len}/${case_id}.allelicCN && \
+    plotCN=${TRCC_CNV}/plot_CN_${bin_len}/${case_id}/${case_id}.plotCN && \
+    plotCN_log=${TRCC_CNV}/plot_CN_${bin_len}/${case_id}/${case_id}.plotCN.log && \
+    > ${plotCN_log}
+    X=`cat ${samples_sex} | awk -F "\t" -v p="${pair_id}" '$1==p{print $2}'`
+    CN_contour.R -u 1 -l 2 \
+     -o ${plotCN}.${bin_len}.CN_contour \
+     ${allelicCN}.${bin_len}.tsv &>> ${plotCN_log} && \
+    for i in {{1..22},X};do
+        ((p=p%15)); ((p++==0)) && wait
+        a=",5"
+        [[ (${i} == X) && (${X} == 1) ]] && a=""
+        cat ${allelicCN}.${bin_len}.tsv | \
+         awk -F "\t" -v OFS="\t" -v i="chr${i}" 'FNR==1{print}\
+          $1==i{sub("^chr","",$1);print}' | \
+         cut -f 1-4${a} > ${plotCN}.chr${i}.${bin_len}.tsv && \
+        plotCN.R -s ${case_id} -g "${i}" \
+         --dot_shape "circle filled" --ylab "" \
+         --dot_size 1 -m "NA" \
+         -d /czlab/cbao/ref/hg38/Homo_sapiens_assembly38.chr0.dict \
+         -b /czlab/cbao/ref/hg38/gBands.hg38.head.txt \
+         -n ${allelicCN}.${bin_len}.SV.tsv \
+         -o ${plotCN}.chr${i}.${bin_len} \
+        ${plotCN}.chr${i}.${bin_len}.tsv &>> ${plotCN_log} && \
+        [[ (${i} == X) && (${X} == 1) ]] && continue || \
+        CN_contour.R -u 1 -l 2 \
+         -o ${plotCN}.chr${i}.${bin_len}.CN_contour \
+         ${plotCN}.chr${i}.${bin_len}.tsv &>> ${plotCN_log} && \
+        rm -f ${plotCN}.chr${i}.${bin_len}.tsv &
+    done
+done
+
+
+# CNV analysis for linked reads
+TRCC=/czlab/cbao/TRCC
+TRCC_CNV=/czlab/cbao/TRCC/CNV
+TRCC_CNVL=/czlab/cbao/TRCC/CNV_LR
+
+mkdir -p /czlab/cbao/TRCC/CNV_LR
+mkdir -p ${TRCC_CNVL}/tmp
+
+## references
+annotate_intervals_A=${TRCC_CNV}/AnnotateIntervals/hg38.10kb.annotated.1_22.interval_list
+annotate_intervals_X=${TRCC_CNV}/AnnotateIntervals/hg38.10kb.annotated.X.interval_list
+### make interval list for 1_22 and X
+mkdir -p ${TRCC_CNVL}/References
+cat ${TRCC_CNV}/References/hg38.10kb.1_22.interval_list | \
+ grep '^@' | \
+ sed 's#\tM5:.*$##g' > ${TRCC_CNVL}/References/hg38.10kb.head.interval_list
+echo -e "@RG\tID:GATKCopyNumber\tSM:SAMPLE" >> ${TRCC_CNVL}/References/hg38.10kb.head.interval_list
+cat ${annotate_intervals_A} | grep -v '^@' > ${TRCC_CNV}/AnnotateIntervals/hg38.10kb.annotated.1_22.tsv
+cat ${annotate_intervals_X} | grep -v '^@' > ${TRCC_CNV}/AnnotateIntervals/hg38.10kb.annotated.X.tsv
+
+## coverage
+### bin-level coverage
+module load python/2.7.15
+mkdir -p ${TRCC_CNVL}/bin_coverage
+cat ${TRCC}/metadata/TRCC_LR.pairs.tsv | \
+ cut -f 2-3 | sed 's#\t#\n#g' | \
+ while read sample_id;do
+    sample_name=${sample_id/DTRCC_/DTRCC}
+    sample_bam=/czlab/DFCI_Data/TranslocationKidneyCancer/DNA-linkedReads/Coverage/${sample_name}.linkedReads
+    sample_coverage=${TRCC_CNVL}/bin_coverage/${sample_id}.bin_coverage
+    nohup srun --cpus-per-task=8 --mem-per-cpu=8G \
+    UniqueBarcodeBinnedCov.py ${sample_bam}.bam \
+     10000 50 ${sample_coverage} &> ${sample_coverage}_10000.log &
+    nohup srun --cpus-per-task=8 --mem-per-cpu=8G \
+    UniqueBarcodeBinnedCov.py ${sample_bam}.bam \
+     25000 50 ${sample_coverage} &> ${sample_coverage}_25000.log &
+    nohup srun --cpus-per-task=8 --mem-per-cpu=8G \
+    UniqueBarcodeBinnedCov.py ${sample_bam}.bam \
+     30000 50 ${sample_coverage} &> ${sample_coverage}_30000.log &
+    nohup srun --cpus-per-task=8 --mem-per-cpu=8G \
+    UniqueBarcodeBinnedCov.py ${sample_bam}.bam \
+     50000 50 ${sample_coverage} &> ${sample_coverage}_50000.log &
+    nohup srun --cpus-per-task=8 --mem-per-cpu=8G \
+    UniqueBarcodeBinnedCov.py ${sample_bam}.bam \
+     100000 50 ${sample_coverage} &> ${sample_coverage}_100000.log &
+done
+### determine sex
+echo -e 'pair_id\tsex' > ${TRCC}/metadata/TRCC_LR.samples_sex.tsv
+cat ${TRCC}/metadata/TRCC_LR.pairs.tsv | \
+ while read pair;do
+    c=(${pair});pair_id=${c[0]};case_id=${c[1]};control_id=${c[2]}
+    read_counts=${TRCC_CNVL}/CollectReadCounts/${control_id}.RC
+    cat ${read_counts}.chrX.${bin_len}.tsv | \
+     grep -v '^@' | grep -v CONTIG | \
+     cat ${read_counts}.chr1_22.${bin_len}.tsv  - | \
+     grep -v '^@' | \
+     datatable.R - -e "d <- d[!is.na(COUNT)];\
+      RC_A <- median(d[CONTIG != 'chrX', COUNT]);\
+      RC_X <- median(d[CONTIG == 'chrX', COUNT]);\
+      RC_AX <- 2 / round(RC_A / RC_X);\
+      d=data.table(RC_AX)" | tail -1 | \
+     sed "s#^#${pair_id}\t#g" >> ${TRCC}/metadata/TRCC_LR.samples_sex.tsv
+done
+### read counts table for bin-level coverage
+bin_len=10kb
+gp_theme="theme(plot.background = element_blank(), \
+ panel.grid = element_blank(), panel.background = element_blank(), \
+ axis.ticks.length = unit(0.3, 'cm'), \
+ axis.title.x = element_text(size = 11, colour = 'black'), \
+ axis.text.x = element_text(size = 9, colour = 'black'), \
+ axis.title.y = element_text(size = 11, colour = 'black'), \
+ axis.text.y = element_text(size = 9, colour = 'black'))"
+
+mkdir -p ${TRCC_CNVL}/coverage_${bin_len}_hist
+cat ${TRCC}/metadata/TRCC_LR.pairs.tsv | \
+ cut -f 2-3 | sed 's#\t#\n#g' | \
+ while read sample_id;do
+    bin_coverage=${TRCC_CNVL}/bin_coverage/${sample_id}.bin_coverage
+    bin_coverage_hist=${TRCC_CNVL}/coverage_${bin_len}_hist/${sample_id}.coverage.hist
+    echo ${sample_id}
+    cat ${bin_coverage}_${bin_len/kb/000}.txt | \
+     sed '1s#CHROM#CONTIG#;1s#BX_##' | cut -f 1-3,5 | \
+     ggplot2.R - -o ${bin_coverage_hist}.pdf \
+      -s 5,7 -b blank --col_name TRUE \
+      -m "d <- subset(d, CONTIG %in% paste0('chr', 1:22));\
+       count_mad <- mad(d[['COUNT']]);\
+       count_median <- median(d[['COUNT']]);\
+       line_breaks <- c(count_median - 3 * count_mad, count_median, count_median + 3 * count_mad);\
+       ggplot() + \
+       geom_histogram(aes(x = COUNT), color = 'black', fill = 'gray', \
+        data = d, binwidth=10, show.legend = FALSE) + \
+        scale_x_continuous(limits = c(0, 1000), breaks = seq(0, 1000, 100), \
+        expand = expansion(mult = c(0, 0))) + \
+       geom_vline(xintercept = line_breaks, linetype='dashed', color = 'gray', linewidth = 0.5) + \
+       ${gp_theme}" &> ${bin_coverage_hist}.log &
+done
+
+## allelic coverage
+### linker coverage
+mkdir -p ${TRCC_CNVL}/AllelicDepth/output
+cd ${TRCC_CNVL}/AllelicDepth
+cat ${TRCC}/metadata/TRCC_LR.pairs.tsv | \
+ while read pair;do
+    c=(${pair});pair_id=${c[0]};case_id=${c[1]};control_id=${c[2]}
+    sample_bam=/czlab/DFCI_Data/TranslocationKidneyCancer/DNA-linkedReads/Coverage/${case_id}.linkedReads
+    vcf_data=/czlab/alumni/tourdot/cpp_linker_v5.0_kidney_cancer/vcf_data/${pair_id}.germline-hets
+    allelic_depth=${TRCC_CNVL}/AllelicDepth/${sample_id}.AD
+    [[ ${pair_id} == "DTRCC10" ]] && vcf_suffix=vcf.gz || vcf_suffix=vcf
+    for i in {{1..22},X};do
+        nohup srun --cpus-per-task=2 --mem-per-cpu=4G \
+        linker coverage -c chr${i} \
+         -i ${sample_bam}.bam \
+         -v ${vcf_data}.SNPs.chr1-X.BA_withRef.sites.rmcent.${vcf_suffix} \
+         -e "tenx" -n ${case_id} &> ${allelic_depth}.chr${i}.log &
+    done
+done
+### allelic depth
+cat ${TRCC}/metadata/TRCC_LR.pairs.tsv | \
+ while read pair;do
+    c=(${pair});pair_id=${c[0]};case_id=${c[1]};control_id=${c[2]}
+    linker_output=${TRCC_CNVL}/AllelicDepth/output/het_coverage_${case_id}
+    allelic_depth=${TRCC_CNVL}/AllelicDepth/${case_id}.AD
+    echo -e "CHROM\tPOS\tREF\tALT\tREF_AD\tALT_AD" > ${allelic_depth}.tsv
+    for i in {{1..22},X};do
+        cat ${linker_output}_tenx_chr${i}.dat | \
+         awk -F "\t" -v OFS="\t" -v c="chr${i}" '{p=$2;split($3,v,":");\
+          for(i=4;i<=9;i++){split($i,n,"|");d[n[1]]=n[2]};\
+           print c,p,v[1],v[2],d[v[1]],d[v[2]]}' | \
+         sort -k2,2n >> ${allelic_depth}.tsv
+    done
+done
+### phased_genotype
+mkdir -p ${TRCC_CNVL}/phased_genotype
+GermlineVar=/czlab/DFCI_Data/TranslocationKidneyCancer/DNA-linkedReads/linkedreads_wgs_phasing/hap_solution_mar16
+cat ${TRCC}/metadata/TRCC_LR.pairs.tsv | \
+ while read pair;do
+    c=(${pair});pair_id=${c[0]};case_id=${c[1]};control_id=${c[2]}
+    phased_genotype=${TRCC_CNVL}/phased_genotype/${pair_id}.phasedGT
+    echo -e "CHROM\tPOS\tREF\tALT\tGT" > ${phased_genotype}.tsv
+    for i in {{1..22},X};do
+        cat ${GermlineVar}/hap_solution_mar16_${pair_id}_chr${i}.dat | \
+          awk -F "\t" -v OFS="\t" '{split($3,R,"_");split($4,A,"_");\
+           if($5=="1"){g="0|1"};if($5=="-1"){g="1|0"}; \
+           print R[1],R[2],R[4],A[4],g}' >> ${phased_genotype}.tsv
+    done
+done
+### allelic_fraction
+mkdir -p ${TRCC_CNVL}/allelic_fraction
+cat ${TRCC}/metadata/TRCC_LR.pairs.tsv | \
+ while read pair;do
+    c=(${pair});pair_id=${c[0]};case_id=${c[1]};control_id=${c[2]}
+    phased_genotype=${TRCC_CNVL}/phased_genotype/${pair_id}.phasedGT
+    allelic_depth=${TRCC_CNVL}/AllelicDepth/${case_id}.AD
+    allelic_fraction=${TRCC_CNVL}/allelic_fraction/${case_id}.phasedAF
+    ACN_AF.R -g ${phased_genotype}.tsv \
+     ${allelic_depth}.tsv > ${allelic_fraction}.tsv &
+done
+### phased_AF
+mkdir -p ${TRCC_CNVL}/phased_AF
+cat ${TRCC}/metadata/TRCC_LR.pairs.tsv | \
+ while read pair;do
+    c=(${pair});pair_id=${c[0]};case_id=${c[1]};control_id=${c[2]}
+    final_Hap=/czlab/cbao/TRCC/CNV_LR/finalHap/${pair_id}.finalHap
+    allelic_fraction=${TRCC_CNVL}/allelic_fraction/${case_id}.phasedAF
+    phased_AF=${TRCC_CNVL}/phased_AF/${case_id}.phased
+    cat ${final_Hap}.txt | \
+     awk -F "\t" -v OFS="\t" 'FNR>1{print $1,$2,$2+25000,$3}' > ${phased_AF}.HP.bed
+    cat ${allelic_fraction}.tsv | \
+     awk -F "\t" -v OFS="\t" 'FNR>1{print $1,$2-1,$2,$5}' > ${phased_AF}.AF.bed
+    bedtools intersect -a ${phased_AF}.AF.bed \
+     -b ${phased_AF}.HP.bed -wao | \
+    awk -F "\t" -v OFS="\t" 'BEGIN{print "CONTIG\tPOSITION\tPH1_AF"}\
+     {if($8==1){f=$4}else if($8==-1){f=1-$4}else{f='NA'};\
+      print $1,$3,f}' > ${phased_AF}.phasedAF.tsv && \
+    rm ${phased_AF}.HP.bed && \
+    rm ${phased_AF}.AF.bed &
+done
+### CN_plot
+${TRCC_CNVL}/TRCC_LR.bin_len.bsh 30kb
+${TRCC_CNVL}/TRCC_LR.bin_len.bsh 50kb
+${TRCC_CNVL}/TRCC_LR.bin_len.bsh 100kb
+
+### circos_CN
+bin_len=100kb
+mkdir -p ${TRCC_CNVL}/circos_CN
+cat ${TRCC}/metadata/TRCC_LR.pairs.tsv | \
+ while read pair;do
+    c=(${pair});pair_id=${c[0]};case_id=${c[1]};control_id=${c[2]}
+    allelic_CN=${TRCC_CNVL}/allelic_CN/${case_id}.allelicCN && \
+    circos_CN=${TRCC_CNVL}/circos_CN/${case_id} && \
+    cat ${allelic_CN}.${bin_len}.tsv | \
+     tail -n +2 | sed 's#^#hs#g' | \
+     cut -f 1-3,4 > ${circos_CN}.AlleleA.txt && \
+    cat ${allelic_CN}.${bin_len}.tsv | \
+     tail -n +2 | sed 's#^#hs#g' | \
+     cut -f 1-3,5 > ${circos_CN}.AlleleB.txt &
+done
+### density_CN
+bin_len=100kb
+mkdir -p ${TRCC_CNVL}/density_CN
+cat ${TRCC}/metadata/TRCC_LR.pairs.tsv | \
+ while read pair;do
+    c=(${pair});pair_id=${c[0]};case_id=${c[1]};control_id=${c[2]}
+    allelic_CN=${TRCC_CNVL}/allelic_CN/${case_id}.allelicCN && \
+    density_CN=${TRCC_CNVL}/density_CN/${case_id}.densityCN && \
+    cat ${allelic_CN}.${bin_len}.tsv | cut -f 1-5 | \
+     sed '2,$s#^#chr#g' > ${density_CN}.densityCN.${bin_len}.tsv && \
+    CN_density.R \
+     --x_range '0,2' --y_range '0,10' -b "9:0-30000000" \
+     -o ${density_CN}.densityCN.${bin_len} \
+     ${density_CN}.densityCN.${bin_len}.tsv &> ${density_CN}.densityCN.${bin_len}.log && \
+    rm -rf ${density_CN}.densityCN.${bin_len}.tsv &
+done
+### phased_AF
+mkdir -p ${TRCC_CNVL}/TRCC.phased_AF
+cat ${TRCC}/metadata/TRCC_LR.pairs.tsv | \
+ while read pair;do
+    c=(${pair});pair_id=${c[0]};case_id=${c[1]};control_id=${c[2]}
+    allelic_fraction=${TRCC_CNVL}/allelic_fraction/${case_id}.phasedAF
+    phased_AF=${TRCC_CNVL}/phased_AF/${case_id}.phased
+    T_phased_AF=${TRCC_CNVL}/TRCC.phased_AF/${case_id}.phased_AF
+    cat ${allelic_fraction}.tsv | \
+    cut -f 1-4 | \
+    merge_2file.R -a - \
+      -b ${phased_AF}.phasedAF.tsv \
+      -x CONTIG,POSITION -y CONTIG,POSITION -J | \
+    awk -F "\t" -v OFS="\t" 'FNR==1{printf $0"\tPH2_AF\n"}\
+     FNR>1{printf $0"\t"1-$5"\n"}' > ${T_phased_AF}.tsv &
+done
+
