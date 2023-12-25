@@ -26,3 +26,5 @@ Run ASE using this vcf and the realigned RNA bam
 The command to submit ASE_example.py is: qsub -t 1:1 ASE_submit.qsub
 
 2. Plot ASE output across chrX genes (escapees excluded) using WGS_ASE_plotting_example_chrX.py. Ensure you have a .seg file generated through copy number pipelines in addition to the ASE output (from step 1).
+
+SD6_raw_data.zip contains read depth-level data for samples shown in Supplementary Data 6; we provide reference and alternative allele counts for all expressed heterozygous SNVs on chrX and the translocated autosome.
