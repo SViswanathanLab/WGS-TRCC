@@ -23,7 +23,7 @@ The scripts have been modified from Zhou et al. 2022 [https://insight.jci.org/ar
 
 3. Run CN_boxplots.R - This takes the data generated above and creates plots of CN information across the genome. It also requires the files Census_allSat May 13 21_30_39 2023.csv and centromere_locations. This generates fig S2B histogram
 
-Figure S2B:
+Figure S1B:
 
 tRCC_recurrrent_CN_opt_sol_manual_geneFreq_100kb.txt (copy number loss and gain across chromosomes, format includes columns for chromosome, location start, location end, CN loss, and CN gain)
 
