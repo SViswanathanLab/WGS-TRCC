@@ -32,3 +32,15 @@ centromere_locations (contains information on the starting and ending positions 
 Census_allSat May 13 21_30_39 2023.csv (list of genes that have some evidence of being associated with cancer and corresponding information regarding location, confidence of association, gene effect, etc. More information can be found on cancer.sanger.ac.uk/census)
 
 CN_boxplots.R plots the copy number loss and gain across chromosomes and identifies cancer-related genes that are enriched or deleted in specific areas.
+
+Figure S1C:
+
+Gene_Map_Break.Rmd
+	This file plots genes with representative features for untranslated regions, introns, exons, and breakpoint markers.
+
+Input files:
+	BED files from the UCSC genome browser containing information about gene features (size and position of introns, exons, utrs)
+	Breakpoint locations (DNA from SVABA, RNA from STAR fusion)
+
+Output:
+	PDF or SVG files of gene feature plots with RNA and DNA breakpoints marked, if applicable
