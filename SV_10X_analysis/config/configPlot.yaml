@@ -1,0 +1,41 @@
+## path to tools ##
+
+samTools:  /mnt/storage/apps/samtools/1.9/bin/samtools
+bcfTools:  /mnt/storage/apps/bcftools/1.9/bin/bcftools
+svaba_exe:  /home/mi724/Tools/svaba/bin/svaba
+
+## path to TITAN snakemake root + Modified files ##
+titan_libdir:  /home/mi724/Tools/TitanCNA/
+titan_results:  /home/mi724/Tools/
+
+## path to scripts ##
+tenX_funcs:  code/tenX_utilsModi.R
+svaba_funcs:  code/svaba_utils.R
+plot_funcs:  code/plottingModi.R
+bxRescue_script:  code/barCodeOverlap.R
+combineSVCN_script:  code/combineSVABA-TITAN.R
+getLRsomaticSV_script:  code/getLongRangerSomaticSV.R
+buildPoN_script:  code/buildGermlineSVPoN.R
+annotPoNSV_script:  code/annotPoNSVs.R
+filterSVs_script: code/filterToolSVs.R
+plotSVCN_script:  code/plotTitanSvabaModi.R
+plotCircos_script: code/create_circosPlot.R
+
+## reference files ##
+refGenome:  /mnt/storage/labs/sviswanathan/GATK_ref/cz_ref/longranger/refdata-GRCh38-2.1.0/fasta/genome.fasta
+genomeBuild:  hg38
+genomeStyle:  UCSC
+cytobandFile:  data/cytoBand_hg38.txt # only need if hg38
+chrs:  c(1:22, \"X\")
+
+## Plotting parameters ##
+plot_id: "DTRCC6"
+plot_zoom:  TRUE
+plot_chrs:  None # "None" will also plot all chromosomes
+plot_startPos:  40000000
+plot_endPos:  60000000
+plot_geneFile:  data/new_gene_list.txt ## include list of genes to annotate on plot
+plot_ylim:  c(-2,6)
+plot_size:  c(8,4)
+plot_type:  ichor ## titan - will include haplotype fraction
+plot_format:  pdf

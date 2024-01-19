@@ -1,0 +1,6 @@
+samples: #format is sample_name: /path/to/sample.bam for both tumors and normals
+  H2K57CCX2_DTRCC6_LKidneyResection:  /home/mi724/Tools/optimalClusterSolution/
+  H2K57CCX2_DTRCC6_AdjNormal:  /home/mi724/Tools/optimalClusterSolution/
+
+pairings: #format is tumor: matched_normal
+  H2K57CCX2_DTRCC6_LKidneyResection: H2K57CCX2_DTRCC6_AdjNormal
