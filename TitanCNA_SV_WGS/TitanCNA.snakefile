@@ -12,7 +12,7 @@ snakemake -s TitanCNA.snakefile --latency-wait 60 --restart-times 3 --keep-going
 """
 
 configfile: "config/config.yaml"
-configfile: "config/samples.yaml"
+configfile: "config/samples_qu.yaml"
 
 include: "ichorCNA.snakefile"
 include: "getAlleleCounts.snakefile"
