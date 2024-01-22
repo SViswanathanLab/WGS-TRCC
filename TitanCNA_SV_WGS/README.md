@@ -2,7 +2,7 @@
 
 ## Description
 
-This workflow uses the original Titan Snakemake workflow from [https://github.com/gavinha/TitanCNA] starting from analysis-ready bam files for tRCC samples TRCC3, TRCC4, TRCC7, TRCC9, TRCC11, TRCC12, TRCC13, TRCC14, TRCC15, TRCC17, TRCC18 and for publsihed datasets. 
+This workflow uses the original Titan Snakemake workflow from [https://github.com/gavinha/TitanCNA] starting from analysis-ready bam files for tRCC samples TRCC3, TRCC4, TRCC7, TRCC9, TRCC11, TRCC12, TRCC13, TRCC14, TRCC15, TRCC17, TRCC18 and for publsihed datasets [Qu et al]. 
 
 ## How to run
 
