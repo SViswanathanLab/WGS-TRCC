@@ -30,6 +30,13 @@ TRCC_LR.bin_len.bsh
 ```
 ## SVABA
 
+## TitanCNA_SV_WGS
+
+This directory contains code copy number analysis by TITAN on a published dataset of Qu et al.'s baitset design.
+
+
+
+
 
 
 
