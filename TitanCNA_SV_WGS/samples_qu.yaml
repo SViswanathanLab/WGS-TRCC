@@ -1,177 +1,179 @@
-#ViswanathanLab 2022
+#ViswanathanLab 2023
 samples:
 
-   #tRCC_01_T: /mnt/scratch/Qu_AS_download/WES/OER288386/tRCC_01_T_hg38_sorted_picard.bam
-   #tRCC_01_N: /mnt/scratch/Qu_AS_download/WES/OER288385/tRCC_01_N_hg38_sorted_picard.bam
+   #tRCC_01_T: /path/to/tumor/OER288386/tRCC_01_T_hg38_sorted_picard.bam
+   #tRCC_01_N: /path/to/normal/OER288385/tRCC_01_N_hg38_sorted_picard.bam
 
-   tRCC_02_T: /mnt/scratch/Qu_AS_download/WES/OER288388/tRCC_02_T_hg38_sorted_picard.bam
-   tRCC_02_N: /mnt/scratch/Qu_AS_download/WES/OER288387/tRCC_02_N_hg38_sorted_picard.bam
+   tRCC_02_T: /path/to/tumor/OER288388/RCC_02_T_hg38_sorted_picard.bam
+   tRCC_02_N: /path/to/normal/OER288387/tRCC_02_N_hg38_sorted_picard.bam
 
-   #tRCC_03_T: /mnt/scratch/Qu_AS_download/WES/OER288390/tRCC_03_T_hg38_sorted_picard.bam
-   #tRCC_03_N: /mnt/scratch/Qu_AS_download/WES/OER288389/tRCC_03_N_hg38_sorted_picard.bam
+   #tRCC_03_T: /path/to/tumor/OER288390/tRCC_03_T_hg38_sorted_picard.bam
+   #tRCC_03_N: /path/to/normal/OER288389/tRCC_03_N_hg38_sorted_picard.bam
 
-   tRCC_04_T: /mnt/scratch/Qu_AS_download/WES/OER288392/tRCC_04_T_hg38_sorted_picard.bam
-   tRCC_04_N: /mnt/scratch/Qu_AS_download/WES/OER288391/tRCC_04_N_hg38_sorted_picard.bam
+   tRCC_04_T: /path/to/tumor/OER288392/tRCC_04_T_hg38_sorted_picard.bam
+   tRCC_04_N: /path/to/normal/OER288391/tRCC_04_N_hg38_sorted_picard.bam
 
-   tRCC_05_T: /mnt/scratch/Qu_AS_download/WES/OER288394/tRCC_05_T_hg38_sorted_picard.bam
-   tRCC_05_N: /mnt/scratch/Qu_AS_download/WES/OER288393/tRCC_05_N_hg38_sorted_picard.bam
+   tRCC_05_T: /path/to/tumor/OER288394/tRCC_05_T_hg38_sorted_picard.bam
+   tRCC_05_N: /path/to/normal/OER288393/tRCC_05_N_hg38_sorted_picard.bam
 
-   tRCC_06_T: /mnt/scratch/Qu_AS_download/WES/OER288396/tRCC_06_T_hg38_sorted_picard.bam
-   tRCC_06_N: /mnt/scratch/Qu_AS_download/WES/OER288395/tRCC_06_N_hg38_sorted_picard.bam
+   tRCC_06_T: /path/to/tumor/OER288396/tRCC_06_T_hg38_sorted_picard.bam
+   tRCC_06_N: /path/to/normal/OER288395/tRCC_06_N_hg38_sorted_picard.bam
 
-   tRCC_10_T: /mnt/scratch/Qu_AS_download/WES/OER288402/tRCC_10_T_hg38_sorted_picard.bam
-   tRCC_10_N: /mnt/scratch/Qu_AS_download/WES/OER288401/tRCC_10_N_hg38_sorted_picard.bam
+   tRCC_10_T: /path/to/tumor/OER288402/tRCC_10_T_hg38_sorted_picard.bam
+   tRCC_10_N: /path/to/normal/OER288401/tRCC_10_N_hg38_sorted_picard.bam
 
-   tRCC_11_T: /mnt/scratch/Qu_AS_download/WES/OER288404/tRCC_11_T_hg38_sorted_picard.bam
-   tRCC_11_N: /mnt/scratch/Qu_AS_download/WES/OER288403/tRCC_11_N_hg38_sorted_picard.bam
+   tRCC_11_T: /path/to/tumor/OER288404/tRCC_11_T_hg38_sorted_picard.bam
+   tRCC_11_N: /path/to/normal/OER288403/tRCC_11_N_hg38_sorted_picard.bam
 
-   tRCC_15_T: /mnt/scratch/Qu_AS_download/WES/OER288412/tRCC_15_T_hg38_sorted_picard.bam
-   tRCC_15_N: /mnt/scratch/Qu_AS_download/WES/OER288411/tRCC_15_N_hg38_sorted_picard.bam
+   tRCC_15_T: /path/to/tumor/OER288412/tRCC_15_T_hg38_sorted_picard.bam
+   tRCC_15_N: /path/to/normal/OER288411/tRCC_15_N_hg38_sorted_picard.bam
 
-   tRCC_16_T: /mnt/scratch/Qu_AS_download/WES/OER288414/tRCC_16_T_hg38_sorted_picard.bam
-   tRCC_16_N: /mnt/scratch/Qu_AS_download/WES/OER288413/tRCC_16_N_hg38_sorted_picard.bam
+   tRCC_16_T: /path/to/tumor/OER288414/tRCC_16_T_hg38_sorted_picard.bam
+   tRCC_16_N: /path/to/normal/OER288413/tRCC_16_N_hg38_sorted_picard.bam
 
-   tRCC_17_T: /mnt/scratch/Qu_AS_download/WES/OER288416/tRCC_17_T_hg38_sorted_picard.bam
-   tRCC_17_N: /mnt/scratch/Qu_AS_download/WES/OER288415/tRCC_17_N_hg38_sorted_picard.bam
+   tRCC_17_T: /path/to/tumor/OER288416/tRCC_17_T_hg38_sorted_picard.bam
+   tRCC_17_N: /path/to/normal/OER288415/tRCC_17_N_hg38_sorted_picard.bam
 
-   tRCC_18_T: /mnt/scratch/Qu_AS_download/WES/OER288418/tRCC_18_T_hg38_sorted_picard.bam
-   tRCC_18_N: /mnt/scratch/Qu_AS_download/WES/OER288417/tRCC_18_N_hg38_sorted_picard.bam
+   tRCC_18_T: /path/to/tumor/OER288418/tRCC_18_T_hg38_sorted_picard.bam
+   tRCC_18_N: /path/to/normal/OER288417/tRCC_18_N_hg38_sorted_picard.bam
 
-   tRCC_19_T: /mnt/scratch/Qu_AS_download/WES/OER288420/tRCC_19_T_hg38_sorted_picard.bam
-   tRCC_19_N: /mnt/scratch/Qu_AS_download/WES/OER288419/tRCC_19_N_hg38_sorted_picard.bam
+   tRCC_19_T: /path/to/tumor/OER288420/tRCC_19_T_hg38_sorted_picard.bam
+   tRCC_19_N: /path/to/normal/OER288419/tRCC_19_N_hg38_sorted_picard.bam
 
-   tRCC_20_T: /mnt/scratch/Qu_AS_download/WES/OER288422/tRCC_20_T_hg38_sorted_picard.bam
-   tRCC_20_N: /mnt/scratch/Qu_AS_download/WES/OER288421/tRCC_20_N_hg38_sorted_picard.bam
+   tRCC_20_T: /path/to/tumor/OER288422/tRCC_20_T_hg38_sorted_picard.bam
+   tRCC_20_N: /path/to/normal/OER288421/tRCC_20_N_hg38_sorted_picard.bam
 
-   tRCC_21_T: /mnt/scratch/Qu_AS_download/WES/OER288424/tRCC_21_T_hg38_sorted_picard.bam
-   tRCC_21_N: /mnt/scratch/Qu_AS_download/WES/OER288423/tRCC_21_N_hg38_sorted_picard.bam
+   tRCC_21_T: /path/to/tumor/OER288424/tRCC_21_T_hg38_sorted_picard.bam
+   tRCC_21_N: /path/to/normal/OER288423/tRCC_21_N_hg38_sorted_picard.bam
 
-   tRCC_22_T: /mnt/scratch/Qu_AS_download/WES/OER288426/tRCC_22_T_hg38_sorted_picard.bam
-   tRCC_22_N: /mnt/scratch/Qu_AS_download/WES/OER288425/tRCC_22_N_hg38_sorted_picard.bam
+   tRCC_22_T: /path/to/tumor/OER288426/tRCC_22_T_hg38_sorted_picard.bam
+   tRCC_22_N: /path/to/normal/OER288425/tRCC_22_N_hg38_sorted_picard.bam
 
-   tRCC_26_T: /mnt/scratch/Qu_AS_download/WES/OER288434/tRCC_26_T_hg38_sorted_picard.bam
-   tRCC_26_N: /mnt/scratch/Qu_AS_download/WES/OER288433/tRCC_26_N_hg38_sorted_picard.bam
+   tRCC_26_T: /path/to/tumor/OER288434/tRCC_26_T_hg38_sorted_picard.bam
+   tRCC_26_N: /path/to/normal/OER288433/tRCC_26_N_hg38_sorted_picard.bam
 
-   tRCC_27_T: /mnt/scratch/Qu_AS_download/WES/OER288436/tRCC_27_T_hg38_sorted_picard.bam
-   tRCC_27_N: /mnt/scratch/Qu_AS_download/WES/OER288435/tRCC_27_N_hg38_sorted_picard.bam
+   tRCC_27_T: /path/to/tumor/OER288436/tRCC_27_T_hg38_sorted_picard.bam
+   tRCC_27_N: /path/to/normal/OER288435/tRCC_27_N_hg38_sorted_picard.bam
 
-   tRCC_29_T: /mnt/scratch/Qu_AS_download/WES/OER288440/tRCC_29_T_hg38_sorted_picard.bam
-   tRCC_29_N: /mnt/scratch/Qu_AS_download/WES/OER288439/tRCC_29_N_hg38_sorted_picard.bam
+   tRCC_29_T: /path/to/tumor/OER288440/tRCC_29_T_hg38_sorted_picard.bam
+   tRCC_29_N: /path/to/normal/OER288439/tRCC_29_N_hg38_sorted_picard.bam
 
-   tRCC_30_T: /mnt/scratch/Qu_AS_download/WES/OER288442/tRCC_30_T_hg38_sorted_picard.bam
-   tRCC_30_N: /mnt/scratch/Qu_AS_download/WES/OER288441/tRCC_30_N_hg38_sorted_picard.bam
+   tRCC_30_T: /path/to/tumor/OER288442/tRCC_30_T_hg38_sorted_picard.bam
+   tRCC_30_N: /path/to/normal/OER288441/tRCC_30_N_hg38_sorted_picard.bam
 
-   tRCC_34_T: /mnt/scratch/Qu_AS_download/WES/OER288448/tRCC_34_T_hg38_sorted_picard.bam
-   tRCC_34_N: /mnt/scratch/Qu_AS_download/WES/OER288447/tRCC_34_N_hg38_sorted_picard.bam
+   tRCC_34_T: /path/to/tumor/OER288448/tRCC_34_T_hg38_sorted_picard.bam
+   tRCC_34_N: /path/to/normal/OER288447/tRCC_34_N_hg38_sorted_picard.bam
 
-   tRCC_36_T: /mnt/scratch/Qu_AS_download/WES/OER288452/tRCC_36_T_hg38_sorted_picard.bam
-   tRCC_36_N: /mnt/scratch/Qu_AS_download/WES/OER288451/tRCC_36_N_hg38_sorted_picard.bam
+   tRCC_36_T: /path/to/tumor/OER288452/tRCC_36_T_hg38_sorted_picard.bam
+   tRCC_36_N: /path/to/normal/OER288451/tRCC_36_N_hg38_sorted_picard.bam
 
-   tRCC_38_T: /mnt/scratch/Qu_AS_download/WES/OER288456/tRCC_38_T_hg38_sorted_picard.bam
-tRCC_39_T: /mnt/scratch/Qu_AS_download/WES/OER288458/tRCC_39_T_hg38_sorted_picard.bam
-   tRCC_39_N: /mnt/scratch/Qu_AS_download/WES/OER288457/tRCC_39_N_hg38_sorted_picard.bam
+   tRCC_38_T: /path/to/tumor/OER288456/tRCC_38_T_hg38_sorted_picard.bam
+   tRCC_38_N: /path/to/normal/OER288455/tRCC_38_N_hg38_sorted_picard.bam
 
-   tRCC_40_T: /mnt/scratch/Qu_AS_download/WES/OER288460/tRCC_40_T_hg38_sorted_picard.bam
-   tRCC_40_N: /mnt/scratch/Qu_AS_download/WES/OER288459/tRCC_40_N_hg38_sorted_picard.bam
+   tRCC_39_T: /path/to/tumor/OER288458/tRCC_39_T_hg38_sorted_picard.bam
+   tRCC_39_N: /path/to/normal/OER288457/tRCC_39_N_hg38_sorted_picard.bam
 
-   tRCC_41_T: /mnt/scratch/Qu_AS_download/WES/OER288462/tRCC_41_T_hg38_sorted_picard.bam
-   tRCC_41_N: /mnt/scratch/Qu_AS_download/WES/OER288461/tRCC_41_N_hg38_sorted_picard.bam
+   tRCC_40_T: /path/to/tumor/OER288460/tRCC_40_T_hg38_sorted_picard.bam
+   tRCC_40_N: /path/to/normal/OER288459/tRCC_40_N_hg38_sorted_picard.bam
 
-   tRCC_42_T: /mnt/scratch/Qu_AS_download/WES/OER288464/tRCC_42_T_hg38_sorted_picard.bam
-   tRCC_42_N: /mnt/scratch/Qu_AS_download/WES/OER288463/tRCC_42_N_hg38_sorted_picard.bam
+   tRCC_41_T: /path/to/tumor/OER288462/tRCC_41_T_hg38_sorted_picard.bam
+   tRCC_41_N: /path/to/normal/OER288461/tRCC_41_N_hg38_sorted_picard.bam
 
-   tRCC_43_T: /mnt/scratch/Qu_AS_download/WES/OER288466/tRCC_43_T_hg38_sorted_picard.bam
-   tRCC_43_N: /mnt/scratch/Qu_AS_download/WES/OER288465/tRCC_43_N_hg38_sorted_picard.bam
+   tRCC_42_T: /path/to/tumor/OER288464/tRCC_42_T_hg38_sorted_picard.bam
+   tRCC_42_N: /path/to/normal/OER288463/tRCC_42_N_hg38_sorted_picard.bam
 
-   tRCC_44_T: /mnt/scratch/Qu_AS_download/WES/OER288468/tRCC_44_T_hg38_sorted_picard.bam
-   tRCC_44_N: /mnt/scratch/Qu_AS_download/WES/OER288467/tRCC_44_N_hg38_sorted_picard.bam
+   tRCC_43_T: /path/to/tumor/OER288466/tRCC_43_T_hg38_sorted_picard.bam
+   tRCC_43_N: /path/to/normal/OER288465/tRCC_43_N_hg38_sorted_picard.bam
 
-   tRCC_46_T: /mnt/scratch/Qu_AS_download/WES/OER288472/tRCC_46_T_hg38_sorted_picard.bam
-   tRCC_46_N: /mnt/scratch/Qu_AS_download/WES/OER288471/tRCC_46_N_hg38_sorted_picard.bam
+   tRCC_44_T: /path/to/tumor/OER288468/tRCC_44_T_hg38_sorted_picard.bam
+   tRCC_44_N: /path/to/normal/OER288467/tRCC_44_N_hg38_sorted_picard.bam
 
-   tRCC_47_T: /mnt/scratch/Qu_AS_download/WES/OER288474/tRCC_47_T_hg38_sorted_picard.bam
-   tRCC_47_N: /mnt/scratch/Qu_AS_download/WES/OER288473/tRCC_47_N_hg38_sorted_picard.bam
+   tRCC_46_T: /path/to/tumor/OER288472/tRCC_46_T_hg38_sorted_picard.bam
+   tRCC_46_N: /path/to/normal/OER288471/tRCC_46_N_hg38_sorted_picard.bam
 
-   tRCC_49_T: /mnt/scratch/Qu_AS_download/WES/OER288478/tRCC_49_T_hg38_sorted_picard.bam
-   tRCC_49_N: /mnt/scratch/Qu_AS_download/WES/OER288477/tRCC_49_N_hg38_sorted_picard.bam
+   tRCC_47_T: /path/to/tumor/OER288474/tRCC_47_T_hg38_sorted_picard.bam
+   tRCC_47_N: /path/to/normal/OER288473/tRCC_47_N_hg38_sorted_picard.bam
 
-   tRCC_50_T: /mnt/scratch/Qu_AS_download/WES/OER288480/tRCC_50_T_hg38_sorted_picard.bam
-   tRCC_50_N: /mnt/scratch/Qu_AS_download/WES/OER288479/tRCC_50_N_hg38_sorted_picard.bam
+   tRCC_49_T: /path/to/tumor/OER288478/tRCC_49_T_hg38_sorted_picard.bam
+   tRCC_49_N: /path/to/normal/OER288477/tRCC_49_N_hg38_sorted_picard.bam
 
-   tRCC_52_T: /mnt/scratch/Qu_AS_download/WES/OER288484/tRCC_52_T_hg38_sorted_picard.bam
-   tRCC_52_N: /mnt/scratch/Qu_AS_download/WES/OER288483/tRCC_52_N_hg38_sorted_picard.bam
+   tRCC_50_T: /path/to/tumor/OER288480/tRCC_50_T_hg38_sorted_picard.bam
+   tRCC_50_N: /path/to/normal/OER288479/tRCC_50_N_hg38_sorted_picard.bam
 
-   tRCC_54_T: /mnt/scratch/Qu_AS_download/WES/OER288488/tRCC_54_T_hg38_sorted_picard.bam
-   tRCC_54_N: /mnt/scratch/Qu_AS_download/WES/OER288487/tRCC_54_N_hg38_sorted_picard.bam
+   tRCC_52_T: /path/to/tumor/OER288484/tRCC_52_T_hg38_sorted_picard.bam
+   tRCC_52_N: /path/to/normal/OER288483/tRCC_52_N_hg38_sorted_picard.bam
 
-   tRCC_56_T: /mnt/scratch/Qu_AS_download/WES/OER288492/tRCC_56_T_hg38_sorted_picard.bam
-   tRCC_56_N: /mnt/scratch/Qu_AS_download/WES/OER288491/tRCC_56_N_hg38_sorted_picard.bam
+   tRCC_54_T: /path/to/tumor/OER288488/tRCC_54_T_hg38_sorted_picard.bam
+   tRCC_54_N: /path/to/normal/OER288487/tRCC_54_N_hg38_sorted_picard.bam
 
-   tRCC_57_T: /mnt/scratch/Qu_AS_download/WES/OER288494/tRCC_57_T_hg38_sorted_picard.bam
-   tRCC_57_N: /mnt/scratch/Qu_AS_download/WES/OER288493/tRCC_57_N_hg38_sorted_picard.bam
+   tRCC_56_T: /path/to/tumor/OER288492/tRCC_56_T_hg38_sorted_picard.bam
+   tRCC_56_N: /path/to/normal/OER288491/tRCC_56_N_hg38_sorted_picard.bam
 
-   tRCC_58_T: /mnt/scratch/Qu_AS_download/WES/OER288496/tRCC_58_T_hg38_sorted_picard.bam
-   tRCC_58_N: /mnt/scratch/Qu_AS_download/WES/OER288495/tRCC_58_N_hg38_sorted_picard.bam
+   tRCC_57_T: /path/to/tumor/OER288494/tRCC_57_T_hg38_sorted_picard.bam
+   tRCC_57_N: /path/to/normal/OER288493/tRCC_57_N_hg38_sorted_picard.bam
 
-   tRCC_62_T: /mnt/scratch/Qu_AS_download/WES/OER288504/tRCC_62_T_hg38_sorted_picard.bam
-   tRCC_62_N: /mnt/scratch/Qu_AS_download/WES/OER288503/tRCC_62_N_hg38_sorted_picard.bam
+   tRCC_58_T: /path/to/tumor/OER288496/tRCC_58_T_hg38_sorted_picard.bam
+   tRCC_58_N: /path/to/normal/OER288495/tRCC_58_N_hg38_sorted_picard.bam
 
-   tRCC_63_T: /mnt/scratch/Qu_AS_download/WES/OER288506/tRCC_63_T_hg38_sorted_picard.bam
-   tRCC_63_N: /mnt/scratch/Qu_AS_download/WES/OER288505/tRCC_63_N_hg38_sorted_picard.bam
+   tRCC_62_T: /path/to/tumor/OER288504/tRCC_62_T_hg38_sorted_picard.bam
+   tRCC_62_N: /path/to/normal/OER288503/tRCC_62_N_hg38_sorted_picard.bam
 
-   tRCC_64_T: /mnt/scratch/Qu_AS_download/WES/OER288508/tRCC_64_T_hg38_sorted_picard.bam
-   tRCC_64_N: /mnt/scratch/Qu_AS_download/WES/OER288507/tRCC_64_N_hg38_sorted_picard.bam
+   tRCC_63_T: /path/to/tumor/OER288506/tRCC_63_T_hg38_sorted_picard.bam
+   tRCC_63_N: /path/to/normal/OER288505/tRCC_63_N_hg38_sorted_picard.bam
 
-   tRCC_67_T: /mnt/scratch/Qu_AS_download/WES/OER288512/tRCC_67_T_hg38_sorted_picard.bam
-   tRCC_67_N: /mnt/scratch/Qu_AS_download/WES/OER288511/tRCC_67_N_hg38_sorted_picard.bam
+   tRCC_64_T: /path/to/tumor/OER288508/tRCC_64_T_hg38_sorted_picard.bam
+   tRCC_64_N: /path/to/normal/OER288507/tRCC_64_N_hg38_sorted_picard.bam
 
-   tRCC_68_T: /mnt/scratch/Qu_AS_download/WES/OER288514/tRCC_68_T_hg38_sorted_picard.bam
-   tRCC_68_N: /mnt/scratch/Qu_AS_download/WES/OER288513/tRCC_68_N_hg38_sorted_picard.bam
+   tRCC_67_T: /path/to/tumor/OER288512/tRCC_67_T_hg38_sorted_picard.bam
+   tRCC_67_N: /path/to/normal/OER288511/tRCC_67_N_hg38_sorted_picard.bam
 
-   tRCC_70_T: /mnt/scratch/Qu_AS_download/WES/OER288518/tRCC_70_T_hg38_sorted_picard.bam
-   tRCC_70_N: /mnt/scratch/Qu_AS_download/WES/OER288517/tRCC_70_N_hg38_sorted_picard.bam
+   tRCC_68_T: /path/to/tumor/OER288514/tRCC_68_T_hg38_sorted_picard.bam
+   tRCC_68_N: /path/to/normal/OER288513/tRCC_68_N_hg38_sorted_picard.bam
 
-   tRCC_72_T: /mnt/scratch/Qu_AS_download/WES/OER288520/tRCC_72_T_hg38_sorted_picard.bam
-   tRCC_72_N: /mnt/scratch/Qu_AS_download/WES/OER288519/tRCC_72_N_hg38_sorted_picard.bam
+   tRCC_70_T: /path/to/tumor/OER288518/tRCC_70_T_hg38_sorted_picard.bam
+   tRCC_70_N: /path/to/normal/OER288517/tRCC_70_N_hg38_sorted_picard.bam
 
-   tRCC_73_T: /mnt/scratch/Qu_AS_download/WES/OER288522/tRCC_73_T_hg38_sorted_picard.bam
-   tRCC_73_N: /mnt/scratch/Qu_AS_download/WES/OER288521/tRCC_73_N_hg38_sorted_picard.bam
+   tRCC_72_T: /path/to/tumor/OER288520/tRCC_72_T_hg38_sorted_picard.bam
+   tRCC_72_N: /path/to/normal/OER288519/tRCC_72_N_hg38_sorted_picard.bam
 
-   tRCC_74_T: /mnt/scratch/Qu_AS_download/WES/OER288524/tRCC_74_T_hg38_sorted_picard.bam
-   tRCC_74_N: /mnt/scratch/Qu_AS_download/WES/OER288523/tRCC_74_N_hg38_sorted_picard.bam
+   tRCC_73_T: /path/to/tumor/OER288522/tRCC_73_T_hg38_sorted_picard.bam
+   tRCC_73_N: /path/to/normal/OER288521/tRCC_73_N_hg38_sorted_picard.bam
 
-   tRCC_76_T: /mnt/scratch/Qu_AS_download/WES/OER288528/tRCC_76_T_hg38_sorted_picard.bam
-   tRCC_76_N: /mnt/scratch/Qu_AS_download/WES/OER288527/tRCC_76_N_hg38_sorted_picard.bam
+   tRCC_74_T: /path/to/tumor/OER288524/tRCC_74_T_hg38_sorted_picard.bam
+   tRCC_74_N: /path/to/normal/OER288523/tRCC_74_N_hg38_sorted_picard.bam
 
-   tRCC_77_T: /mnt/scratch/Qu_AS_download/WES/OER288530/tRCC_77_T_hg38_sorted_picard.bam
-   tRCC_77_N: /mnt/scratch/Qu_AS_download/WES/OER288529/tRCC_77_N_hg38_sorted_picard.bam
+   tRCC_76_T: /path/to/tumor/OER288528/tRCC_76_T_hg38_sorted_picard.bam
+   tRCC_76_N: /path/to/normal/OER288527/tRCC_76_N_hg38_sorted_picard.bam
 
-   tRCC_78_T: /mnt/scratch/Qu_AS_download/WES/OER288532/tRCC_78_T_hg38_sorted_picard.bam
-   tRCC_78_N: /mnt/scratch/Qu_AS_download/WES/OER288531/tRCC_78_N_hg38_sorted_picard.bam
+   tRCC_77_T: /path/to/tumor/OER288530/tRCC_77_T_hg38_sorted_picard.bam
+   tRCC_77_N: /path/to/normal/OER288529/tRCC_77_N_hg38_sorted_picard.bam
 
-   tRCC_79_T: /mnt/scratch/Qu_AS_download/WES/OER288534/tRCC_79_T_hg38_sorted_picard.bam
-   tRCC_79_N: /mnt/scratch/Qu_AS_download/WES/OER288533/tRCC_79_N_hg38_sorted_picard.bam
+   tRCC_78_T: /path/to/tumor/OER288532/tRCC_78_T_hg38_sorted_picard.bam
+   tRCC_78_N: /path/to/normal/OER288531/tRCC_78_N_hg38_sorted_picard.bam
 
-   tRCC_80_T: /mnt/scratch/Qu_AS_download/WES/OER288536/tRCC_80_T_hg38_sorted_picard.bam
-   tRCC_80_N: /mnt/scratch/Qu_AS_download/WES/OER288535/tRCC_80_N_hg38_sorted_picard.bam
+   tRCC_79_T: /path/to/tumor/OER288534/tRCC_79_T_hg38_sorted_picard.bam
+   tRCC_79_N: /path/to/normal/OER288533/tRCC_79_N_hg38_sorted_picard.bam
 
-   tRCC_82_T: /mnt/scratch/Qu_AS_download/WES/OER288540/tRCC_82_T_hg38_sorted_picard.bam
-   tRCC_82_N: /mnt/scratch/Qu_AS_download/WES/OER288539/tRCC_82_N_hg38_sorted_picard.bam
+   tRCC_80_T: /path/to/tumor/OER288536/tRCC_80_T_hg38_sorted_picard.bam
+   tRCC_80_N: /path/to/normal/OER288535/tRCC_80_N_hg38_sorted_picard.bam
 
-   tRCC_83_T: /mnt/scratch/Qu_AS_download/WES/OER288542/tRCC_83_T_hg38_sorted_picard.bam
-   tRCC_83_N: /mnt/scratch/Qu_AS_download/WES/OER288541/tRCC_83_N_hg38_sorted_picard.bam
+   tRCC_82_T: /path/to/tumor/OER288540/tRCC_82_T_hg38_sorted_picard.bam
+   tRCC_82_N: /path/to/normal/OER288539/tRCC_82_N_hg38_sorted_picard.bam
 
-   tRCC_84_T: /mnt/scratch/Qu_AS_download/WES/OER288544/tRCC_84_T_hg38_sorted_picard.bam
-   tRCC_84_N: /mnt/scratch/Qu_AS_download/WES/OER288543/tRCC_84_N_hg38_sorted_picard.bam
+   tRCC_83_T: /path/to/tumor/OER288542/tRCC_83_T_hg38_sorted_picard.bam
+   tRCC_83_N: /path/to/normal/OER288541/tRCC_83_N_hg38_sorted_picard.bam
 
-   tRCC_85_T: /mnt/scratch/Qu_AS_download/WES/OER288546/tRCC_85_T_hg38_sorted_picard.bam
-   tRCC_85_N: /mnt/scratch/Qu_AS_download/WES/OER288545/tRCC_85_N_hg38_sorted_picard.bam
+   tRCC_84_T: /path/to/tumor/OER288544/tRCC_84_T_hg38_sorted_picard.bam
+   tRCC_84_N: /path/to/normal/OER288543/tRCC_84_N_hg38_sorted_picard.bam
 
-   tRCC_88_T: /mnt/scratch/Qu_AS_download/WES/OER288550/tRCC_88_T_hg38_sorted_picard.bam
-   tRCC_88_N: /mnt/scratch/Qu_AS_download/WES/OER288549/tRCC_88_N_hg38_sorted_picard.bam
+   tRCC_85_T: /path/to/tumor/OER288546/tRCC_85_T_hg38_sorted_picard.bam
+   tRCC_85_N: /path/to/normal/OER288545/tRCC_85_N_hg38_sorted_picard.bam
 
-   tRCC_89_T: /mnt/scratch/Qu_AS_download/WES/OER288552/tRCC_89_T_hg38_sorted_picard.bam
-   tRCC_89_N: /mnt/scratch/Qu_AS_download/WES/OER288551/tRCC_89_N_hg38_sorted_picard.bam
+   tRCC_88_T: /path/to/tumor/OER288550/tRCC_88_T_hg38_sorted_picard.bam
+   tRCC_88_N: /path/to/normal/OER288549/tRCC_88_N_hg38_sorted_picard.bam
+
+   tRCC_89_T: /path/to/tumor/OER288552/tRCC_89_T_hg38_sorted_picard.bam
+   tRCC_89_N: /path/to/normal/OER288551/tRCC_89_N_hg38_sorted_picard.bam
 
 pairings:
 
@@ -233,5 +235,3 @@ pairings:
    tRCC_85_T: tRCC_85_N
    tRCC_88_T: tRCC_88_N
    tRCC_89_T: tRCC_89_N
-
-
