@@ -33,11 +33,11 @@ To run SVABA on all TRCC samples with matched-normals, we used snakemake workflo
 
 ## TitanCNA_SV_WGS
 
-This directory contains code copy number analysis by TITAN on published dataset of Qu et al.'s with their baitset design. samples_qu.yaml are the tumor-normal samples from their data while samples.yaml is an example run on our institutional samples used for running Titan. 
+This directory contains code for copy number analysis by TITAN on published dataset of Qu et al.'s with their baitset design. samples_qu.yaml are the tumor-normal samples from their data while samples.yaml is an example run on our institutional samples used for running Titan. 
 
+## TitanCNA_10X_snakemake
 
-
-
+This directory contains code and snakemake worklow to run Titan on linked-read samples. We ran Titan for copy no. analyses on our four linked read samples (TRCC5, TRCC6, TRCC8 and TRCC10). This Titan run differs from the standard WGS Titan run because it starts from the BAM files aligned using Long Ranger software.
 
 
 
