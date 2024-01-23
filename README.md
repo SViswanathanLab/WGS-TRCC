@@ -29,7 +29,7 @@ This directory contains codes for copy number analysis for somatic DNA copy numb
 TRCC_LR.bin_len.bsh
 ```
 ## SV_10X_analysis
-To run SVABA on all TRCC samples, we used snakemake workflow modified from Gavin Ha's lab [https://github.com/GavinHaLab/TitanCNA_SV_WGS] 
+To run SVABA on all TRCC samples with matched-normals, we used snakemake workflow modified from Gavin Ha's lab [https://github.com/GavinHaLab/TitanCNA_SV_WGS] 
 
 ## TitanCNA_SV_WGS
 
