@@ -33,7 +33,8 @@ To run SVABA on all TRCC samples, we used snakemake workflow modified from Gavin
 
 ## TitanCNA_SV_WGS
 
-This directory contains code copy number analysis by TITAN on published dataset of Qu et al.'s baitset design.
+This directory contains code copy number analysis by TITAN on published dataset of Qu et al.'s with their baitset design. samples_qu.yaml are the tumor-normal samples from their data while samples.yaml is an example run on our institutional samples used for running Titan. 
+
 
 
 
