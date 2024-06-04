@@ -21,6 +21,7 @@ Qu et al., 2022 [https://www.nature.com/articles/s41467-022-34460-w]
 For rearrangement analysis on chrXi we used data from-
 
 Sturm et al., 2016 [https://www.cell.com/fulltext/S0092-8674(16)00055-6]
+
 Gao et al., 2018 for TCGA RNA-Seq data and the Cancer Cell Line Encyclopedia (CCLE) [https://doi.org/10.1016/j.celrep.2018.03.050]
 
 
