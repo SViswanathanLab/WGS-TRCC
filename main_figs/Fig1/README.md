@@ -1,4 +1,4 @@
-Figure 1c:
+Figure 1C:
 
 Gene_Map_Break.Rmd
 	This file plots genes with representative features for untranslated regions, introns, exons, and breakpoint markers.
