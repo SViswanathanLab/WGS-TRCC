@@ -52,10 +52,5 @@ This directory contains code for copy number analysis by TITAN on published data
 This directory contains code and snakemake worklow to run Titan on linked-read samples. We ran Titan for copy no. analyses on our four linked read samples (TRCC5, TRCC6, TRCC8 and 
 TRCC10). This Titan run differs from the standard WGS Titan run because it starts from the BAM files aligned using Long Ranger software.
 
-## PureCN
-
-This directory contains copy number analysis for cell lines 
-
-
 
 
