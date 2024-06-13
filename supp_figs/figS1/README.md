@@ -1,4 +1,4 @@
-## figS1A
+## figS1A - Comut
 
 Script to generate comut plot for tRCC samples is in the code directory as comut.py and data used are in the data directory
 
