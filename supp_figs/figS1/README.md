@@ -1,5 +1,8 @@
+## figS1A
 
-## For copy number alterations and gene frequency in the tRCC WGS cohort to generate figS1B
+Script to generate comut plot for tRCC samples is in the code directory as comut.py and data used are in the data directory
+
+## figS1B - copy number alterations and gene frequency in the tRCC WGS cohort
 
 The scripts have been modified from Zhou et al. 2022 [https://insight.jci.org/articles/view/161370], available here [https://github.com/GavinHaLab/crpc-sv-pattern-study]
 
