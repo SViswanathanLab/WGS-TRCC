@@ -1,6 +1,6 @@
-Figures 2D  and 2F: 
+Figures 1G  and 1I: 
 
-Fig 2D and F Breakpoint Fusion.ipynb
+Fig 1G and I Breakpoint Fusion.ipynb
 	This file generates a scatterplot of the breakpoint loss and gain as well as the TFE3 and partner loss and gain, as well as a barplot of the frequency of different values of nucleotide loss and gain in the sample cohort.
 
 Input file:
