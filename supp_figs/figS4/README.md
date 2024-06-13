@@ -1,3 +1,3 @@
-## Allelic CN data for all tRCC samples used for plotting phased CN circos of fig. S4
+## Fig S4
 
-The zip file contains the allelic depths (allele A and B) of phased DNA copy numbers (in 100kb intervals) and link files associated with the CIRCOS plots of genome-wide copy numbers for each TRCC sample. 
+VAF of TRCC18 and its metastatic sites were constructed using somatic mutations described in Methods and data in Table S5
