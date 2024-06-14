@@ -2,7 +2,7 @@
 
 ## Whole genome sequence analyses of translocation renal cell carcinoma (tRCC)
 
-This repository contains codes used in the manuscript "A genetic basis for cancer sex differences revealed in Xp11 translocation renal cell carcinoma" https://www.biorxiv.org/content/10.1101/2023.08.04.552029v1 to analyze 29 tRCC samples (in-house datasets) from 15 patients and other tRCCs samples from publicly available datasets as previously described in the following studies-
+This repository contains codes used in the manuscript "A genetic basis for sex differences revealed in Xp11 translocation renal cell carcinoma" https://www.biorxiv.org/content/10.1101/2023.08.04.552029v1 to analyze 29 tRCC samples (in-house datasets) from 15 patients and other tRCCs samples from publicly available datasets as previously described in the following studies-
 
 TCGA, Durinck et al., 2014 [https://www.nature.com/articles/ng.3146]
 
@@ -51,6 +51,12 @@ This directory contains code for copy number analysis by TITAN on published data
 
 This directory contains code and snakemake worklow to run Titan on linked-read samples. We ran Titan for copy no. analyses on our four linked read samples (TRCC5, TRCC6, TRCC8 and 
 TRCC10). This Titan run differs from the standard WGS Titan run because it starts from the BAM files aligned using Long Ranger software.
+
+## NOTE
+
+Upon release, our study website and data for the url to reference will be: https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs003008.v1.p1
+
+
 
 
 
