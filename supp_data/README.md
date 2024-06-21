@@ -1,4 +1,4 @@
-### Supplementary Data provided here are the same as Supplemental Information associated with the manuscript
+### Note
 
 ### Supplemental Information 1 and 2
 
